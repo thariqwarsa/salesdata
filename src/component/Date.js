@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 // import rangeDate from '../data/year-end.json';
+
+// import redux and actions
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
+// import date picker
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+
 
 export class Date extends Component {
   constructor(props) {
@@ -11,6 +18,10 @@ export class Date extends Component {
       startDate: null,
       endDate: null
     }
+  }
+
+  handleClick = () => {
+    this.props.updateDate('haha', 'haha');
   }
 
   componentDidUpdate = (prevProps) => {
@@ -39,9 +50,14 @@ export class Date extends Component {
           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
         />
+        <button onClick={this.handleClick}>haha</button>
       </div >
     )
   }
 }
 
-export default Date
+function mapStateToProps({ date }) {
+  return { date };
+}
+
+export default connect(mapStateToProps, actions)(Date);
