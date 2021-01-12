@@ -20,16 +20,16 @@ export class Date extends Component {
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (
-  //     prevProps.date.startDate !== this.state.startDate
-  //     || prevProps.date.endDate !== this.state.endDate
-  //   ) {
-  //     // const start = !!this.state.startDate ? this.state.startDate.format('DD MMM YYYY') : '';
-  //     // const end = !!this.state.endDate ? this.state.endDate.format('DD MMM YYYY') : '';
-
-  //   }
-  // }
+  componentDidUpdate = (prevProps) => {
+    if (
+      prevProps.date.startDate !== this.state.startDate
+      || prevProps.date.endDate !== this.state.endDate
+    ) {
+      const start = !!this.state.startDate ? this.state.startDate.format('DD MMM YYYY') : '';
+      const end = !!this.state.endDate ? this.state.endDate.format('DD MMM YYYY') : '';
+      this.props.homeCallback(start, end);
+    }
+  }
 
   render() {
     return (
@@ -42,6 +42,7 @@ export class Date extends Component {
           onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+          isOutsideRange={() => false}
         />
 
       </div >
