@@ -19,7 +19,6 @@ export class Date extends Component {
       endDate: ''
     }
   }
-
   // componentDidUpdate = (prevProps) => {
   //   if (
   //     prevProps.date.startDate !== this.state.startDate
