@@ -17,6 +17,7 @@ export class App extends Component {
   }
 
   render() {
+    console.log(this.state.startDate, this.state.endDate);
     return (
       <div className="App" >
         <Date homeCallback={this.changeDate} />
