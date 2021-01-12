@@ -44,7 +44,6 @@ export class Date extends Component {
           onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
           isOutsideRange={() => false}
         />
-
       </div >
     )
   }

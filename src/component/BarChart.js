@@ -4,7 +4,7 @@ import singleData from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-import { XYPlot, VerticalBarSeries, XAxis, YAxis, LabelSeries } from 'react-vis';
+import { XYPlot, VerticalBarSeries, XAxis, YAxis } from 'react-vis';
 
 export class BarChart extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ export class BarChart extends Component {
   }
 
   render() {
-    const data = this.filterData("03 Nov 2019", "10 Nov 2019")
+    const data = this.filterData(this.props.startDate, this.props.endDate)
 
     return (
       <div className='BarChart'>
@@ -43,7 +43,6 @@ export class BarChart extends Component {
           height={250}
           xType="ordinal"
         >
-
           <XAxis />
           <YAxis />
           <VerticalBarSeries
