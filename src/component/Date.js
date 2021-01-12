@@ -10,9 +10,6 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
-// import component
-import BarChart from './BarChart.js'
-
 
 export class Date extends Component {
   constructor(props) {
@@ -46,10 +43,7 @@ export class Date extends Component {
           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
         />
-        <BarChart
-          startDate={!!this.state.startDate ? this.state.startDate.format('DD MMM YYYY') : ''}
-          endDate={!!this.state.endDate ? this.state.endDate.format('DD MMM YYYY') : ''}
-        />
+
       </div >
     )
   }
