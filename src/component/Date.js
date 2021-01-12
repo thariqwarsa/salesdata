@@ -15,26 +15,19 @@ export class Date extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: null,
-      endDate: null
+      startDate: '',
+      endDate: ''
     }
-  }
-
-  handleClick = () => {
-    this.props.updateDate('haha', 'haha');
   }
 
   componentDidUpdate = (prevProps) => {
-    if (prevProps.startDate !== this.state.startDate) {
-      if (this.state.startDate) {
-        console.log(this.state.startDate.toDate())
-      }
-    }
-
-    if (prevProps.endDate !== this.state.endDate) {
-      if (this.state.endDate) {
-        console.log(this.state.endDate.toDate())
-      }
+    if (
+      prevProps.date.startDate !== this.state.startDate
+      || prevProps.date.endDate !== this.state.endDate
+    ) {
+      const start = !!this.state.startDate ? this.state.startDate.format('DD MMM YYYY') : '';
+      const end = !!this.state.endDate ? this.state.endDate.format('DD MMM YYYY') : '';
+      // this.props.updateDate(start, end);
     }
   }
 
@@ -50,7 +43,6 @@ export class Date extends Component {
           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
         />
-        <button onClick={this.handleClick}>haha</button>
       </div >
     )
   }
