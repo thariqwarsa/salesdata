@@ -1,49 +1,44 @@
 import React, { Component } from 'react';
-import rangeDate from '../data/year-end.json';
+// import rangeDate from '../data/year-end.json';
+import 'react-dates/initialize';
+import { DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 
 export class Date extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      from: '01 Oct 2019',
-      to: ''
+      startDate: null,
+      endDate: null
     }
-    this.handleChangeFrom = this.handleChangeFrom.bind(this);
-    this.handleChangeTo = this.handleChangeTo.bind(this);
   }
 
-  handleChangeFrom(evt) {
-    this.setState({ from: evt.target.value });
-  }
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.startDate !== this.state.startDate) {
+      if (this.state.startDate) {
+        console.log(this.state.startDate.toDate())
+      }
+    }
 
-  handleChangeTo(evt) {
-    this.setState({ to: evt.target.value });
+    if (prevProps.endDate !== this.state.endDate) {
+      if (this.state.endDate) {
+        console.log(this.state.endDate.toDate())
+      }
+    }
   }
 
   render() {
-    const renderDate = rangeDate.data.range_date.map(
-      date => { return (<option key={date} value={date}>{date}</option>) }
-    );
-
     return (
-      < div className='Date' >
-        <div className="form-group">
-          <label htmlFor="from">From</label>
-          <select className="form-control" name='from' id="from"
-            value={this.state.from} onChange={this.handleChangeFrom}
-          >
-            {renderDate}
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="to">To</label>
-          <select className="form-control" name='to' id="to"
-            value={this.state.to} onChange={this.handleChangeTo}
-          >
-            {renderDate}
-          </select>
-        </div>
+      <div className='Date'>
+        <DateRangePicker
+          startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+          startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+          endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+          endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+          onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+          focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+          onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+        />
       </div >
     )
   }
