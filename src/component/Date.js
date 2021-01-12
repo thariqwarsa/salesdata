@@ -15,20 +15,21 @@ export class Date extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: '',
-      endDate: ''
+      startDate: null,
+      endDate: null
     }
   }
-  // componentDidUpdate = (prevProps) => {
-  //   if (
-  //     prevProps.date.startDate !== this.state.startDate
-  //     || prevProps.date.endDate !== this.state.endDate
-  //   ) {
-  //     const start = !!this.state.startDate ? this.state.startDate.format('DD MMM YYYY') : '';
-  //     const end = !!this.state.endDate ? this.state.endDate.format('DD MMM YYYY') : '';
-  //     // this.props.updateDate(start, end);
-  //   }
-  // }
+
+  componentDidUpdate = (prevProps) => {
+    if (
+      prevProps.date.startDate !== this.state.startDate
+      || prevProps.date.endDate !== this.state.endDate
+    ) {
+      const start = !!this.state.startDate ? this.state.startDate.format('DD MMM YYYY') : '';
+      const end = !!this.state.endDate ? this.state.endDate.format('DD MMM YYYY') : '';
+      this.props.homeCallback(start, end);
+    }
+  }
 
   render() {
     return (
