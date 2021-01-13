@@ -11,6 +11,11 @@
   font-weight: 600;
 }
 
+.MultipleLineChart .rv-discrete-color-legend {
+  width: 60%;
+  margin: auto;
+}
+
 .SingleBarChart .rv-xy-plot__axis__tick__text {
   font-size: 9px;
   font-weight: 600;
