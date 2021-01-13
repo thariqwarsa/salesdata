@@ -3,7 +3,7 @@ import multipleData from '../data/year-end.json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-import { XYPlot, LineSeries, XAxis, YAxis, HorizontalGridLines } from 'react-vis';
+import { XYPlot, LineSeries, XAxis, YAxis, HorizontalGridLines, DiscreteColorLegend } from 'react-vis';
 
 export class MultipleLineChart extends Component {
 
@@ -28,23 +28,30 @@ export class MultipleLineChart extends Component {
 
   render() {
     const datas = this.filterData(this.props.startDate, this.props.endDate);
-    console.log(datas);
+    const account_names = datas.map(d => d.account_name);
+
     return (
-      <XYPlot
-        className='MultipleLineChart'
-        width={700}
-        height={250}
-        xType="ordinal"
-      >
-        <XAxis />
-        <YAxis />
-        <HorizontalGridLines />
-        {
-          datas.length && datas.map(d => {
-            return (<LineSeries data={d.data} />)
-          })
-        }
-      </XYPlot>
+      <div className="MultipleLineChart">
+        <XYPlot
+          className='MultipleLineChart'
+          width={700}
+          height={250}
+          xType="ordinal"
+        >
+          <XAxis />
+          <YAxis />
+          <HorizontalGridLines />
+          {
+            datas.length && datas.map(d => {
+              return (<LineSeries key={d.account_name} data={d.data} curve={'curveMonotoneX'} />)
+            })
+          }
+        </XYPlot>
+        <div className='legend'>
+          <DiscreteColorLegend items={account_names.slice(0, 8)} orientation='horizontal' />
+          <DiscreteColorLegend items={account_names.slice(8)} orientation='horizontal' />
+        </div>
+      </div>
     )
   }
 }
