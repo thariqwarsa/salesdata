@@ -2,6 +2,15 @@
   margin: 1em auto;
 }
 
+.MultipleLineChart {
+  margin: 1em auto;
+}
+
+.MultipleLineChart .rv-xy-plot__axis__tick__text {
+  font-size: 9px;
+  font-weight: 600;
+}
+
 .SingleBarChart .rv-xy-plot__axis__tick__text {
   font-size: 9px;
   font-weight: 600;
