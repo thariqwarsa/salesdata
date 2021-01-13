@@ -12,8 +12,9 @@ export class MultipleLineChart extends Component {
     let grab = false;
     let allData = [];
     let clientData = {};
+    // let clientNum = datas.length;
 
-    for (let i = 0; i < datas.length; i++) {
+    for (let i = 0; i < 4; i++) {
       clientData = { 'account_name': datas[i].account_name, 'data': [] }
       grab = false;
       for (let j = 0; j < datas[i].data.length; j++) {
@@ -35,7 +36,7 @@ export class MultipleLineChart extends Component {
         <XYPlot
           xType="ordinal"
           className='MultipleLineChart'
-          width={700}
+          width={600}
           height={200}
 
         >

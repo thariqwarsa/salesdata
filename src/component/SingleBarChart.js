@@ -40,17 +40,15 @@ export class SingleBarChart extends Component {
 
   render() {
     const data = this.filterData(this.props.startDate, this.props.endDate)
-    // const data = this.filterData('09 Sep 2020', '17 Sep 2020')
 
     return (
       <XYPlot
         className='SingleBarChart'
-        width={700}
+        width={600}
         height={200}
         xType="ordinal"
       >
         <XAxis />
-        <YAxis />
         <VerticalBarSeries
           barWidth={0.6}
           data={data}

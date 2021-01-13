@@ -1,5 +1,5 @@
 .App .container {
-  max-width: 50em;
+  max-width: 40em;
 }
 
 .SalesOverview .container {
@@ -7,9 +7,18 @@
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25em;
 }
+
+.SalesOverview .card-body {
+  padding: 12px;
+}
+
+.SalesOverview .card-title {
+  font-size: 1em;
+}
+
 .SalesOverview .card-text {
   font-size: 0.8em;
-  color: #353535;
+  color: #4d4d4d;
 }
 
 .SalesOverview .paid span {
