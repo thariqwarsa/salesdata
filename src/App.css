@@ -1,3 +1,7 @@
+.App .container {
+  max-width: 50em;
+}
+
 .SingleBarChart {
   margin: 1em auto;
 }
@@ -12,8 +16,8 @@
 }
 
 .MultipleLineChart .rv-discrete-color-legend {
-  width: 60%;
-  margin: auto;
+  font-size: 9px;
+  margin: 1em auto;
 }
 
 .SingleBarChart .rv-xy-plot__axis__tick__text {
