@@ -1,2 +1,12 @@
-.App {
+.SingleBarChart {
+  margin: 1em auto;
+}
+
+.SingleBarChart .rv-xy-plot__axis__tick__text {
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.DateRangePicker {
+  margin-top: 1em;
 }

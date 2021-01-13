@@ -35,21 +35,21 @@ export class SingleBarChart extends Component {
 
   render() {
     const data = this.filterData(this.props.startDate, this.props.endDate)
+    // const data = this.filterData('09 Sep 2020', '17 Sep 2020')
 
     return (
-      <div className='SingleBarChart'>
-        <XYPlot
-          width={700}
-          height={250}
-          xType="ordinal"
-        >
-          <XAxis />
-          <YAxis />
-          <VerticalBarSeries
-            data={data}
-          />
-        </XYPlot>
-      </div>
+      <XYPlot
+        className='SingleBarChart'
+        width={700}
+        height={250}
+        xType="ordinal"
+      >
+        <XAxis />
+        <YAxis />
+        <VerticalBarSeries
+          data={data}
+        />
+      </XYPlot>
     )
   }
 }
