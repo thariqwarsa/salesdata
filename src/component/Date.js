@@ -35,6 +35,7 @@ export class Date extends Component {
     return (
       <div className='Date'>
         <DateRangePicker
+          className='DateRangPicker'
           startDate={this.state.startDate} // momentPropTypes.momentObj or null,
           startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
           endDate={this.state.endDate} // momentPropTypes.momentObj or null,

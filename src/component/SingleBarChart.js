@@ -6,7 +6,7 @@ import singleData from '../data/year-end(single-client).json';
 import '../../node_modules/react-vis/dist/style.css';
 import { XYPlot, VerticalBarSeries, XAxis, YAxis } from 'react-vis';
 
-export class BarChart extends Component {
+export class SingleBarChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +37,7 @@ export class BarChart extends Component {
     const data = this.filterData(this.props.startDate, this.props.endDate)
 
     return (
-      <div className='BarChart'>
+      <div className='SingleBarChart'>
         <XYPlot
           width={700}
           height={250}
@@ -54,4 +54,4 @@ export class BarChart extends Component {
   }
 }
 
-export default BarChart
+export default SingleBarChart
