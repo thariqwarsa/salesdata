@@ -33,13 +33,15 @@ export class MultipleLineChart extends Component {
     return (
       <div className="MultipleLineChart">
         <XYPlot
+          xType="ordinal"
           className='MultipleLineChart'
           width={700}
-          height={250}
-          xType="ordinal"
+          height={200}
+
         >
           <XAxis />
           <YAxis />
+
           <HorizontalGridLines />
           {
             datas.length && datas.map(d => {
@@ -47,12 +49,12 @@ export class MultipleLineChart extends Component {
             })
           }
         </XYPlot>
-        <div className='legend'>
+        {/* <div className='legend'>
           <DiscreteColorLegend items={account_names.slice(0, 8)}
             orientation='horizontal' width={600} />
           <DiscreteColorLegend items={account_names.slice(8)}
             orientation='horizontal' width={600} />
-        </div>
+        </div> */}
       </div>
     )
   }

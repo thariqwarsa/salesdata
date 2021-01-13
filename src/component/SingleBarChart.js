@@ -46,7 +46,7 @@ export class SingleBarChart extends Component {
       <XYPlot
         className='SingleBarChart'
         width={700}
-        height={250}
+        height={200}
         xType="ordinal"
       >
         <XAxis />
