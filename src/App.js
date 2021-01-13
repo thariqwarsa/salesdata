@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Date from './component/Date.js'
 import './App.css';
+import SingleBarChart from './component/SingleBarChart.js';
 
 export class App extends Component {
   constructor(props) {
@@ -17,10 +18,13 @@ export class App extends Component {
   }
 
   render() {
-    console.log(this.state.startDate, this.state.endDate);
+    const { startDate, endDate } = this.state;
     return (
       <div className="App" >
-        <Date homeCallback={this.changeDate} />
+        <div className='container'>
+          <Date homeCallback={this.changeDate} />
+          <SingleBarChart startDate={startDate} endDate={endDate} />
+        </div>
       </div>
     );
   }
