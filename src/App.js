@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import Date from './component/Date.js'
 import './App.css';
+
+import Date from './component/Date.js'
 import SingleBarChart from './component/SingleBarChart.js';
 import MultipleLineChart from './component/MultipleLineChart';
-import SalesOverview from './component/SalesOverview'
+import SalesOverview from './component/SalesOverview';
+import RightPanel from './component/RightPanel';
 
 export class App extends Component {
   constructor(props) {
@@ -27,10 +29,20 @@ export class App extends Component {
     return (
       <div className="App" >
         <div className='container'>
-          <Date homeCallback={this.changeDate} />
-          <SalesOverview />
-          <MultipleLineChart startDate={startDate} endDate={endDate} />
-          <SingleBarChart startDate={startDate} endDate={endDate} />
+          <div className="row">
+            <div className='col-2'>
+
+            </div>
+            <div className="col-8">
+              <Date homeCallback={this.changeDate} />
+              <SalesOverview />
+              <MultipleLineChart startDate={startDate} endDate={endDate} />
+              <SingleBarChart startDate={startDate} endDate={endDate} />
+            </div>
+            <div className='col-2'>
+              <RightPanel />
+            </div>
+          </div>
         </div>
       </div>
     );
