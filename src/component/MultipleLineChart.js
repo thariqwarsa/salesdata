@@ -8,28 +8,27 @@ import { XYPlot, LineSeries, XAxis, YAxis, HorizontalGridLines } from 'react-vis
 export class MultipleLineChart extends Component {
 
   filterData(start, end) {
-    const datas = multipleData.data.metric.clicks[0].data;
+    const datas = Object.values(multipleData.data.metric.clicks);
     let grab = false;
-    let filteredData = [];
+    let allData = [];
+    let clientData = {};
 
     for (let i = 0; i < datas.length; i++) {
-      if (datas[i][0] === start) {
-        grab = true;
+      clientData = { 'account_name': datas[i].account_name, 'data': [] }
+      grab = false;
+      for (let j = 0; j < datas[i].data.length; j++) {
+        if (datas[i].data[j][0] === start) grab = true;
+        if (grab) clientData.data.push({ x: datas[i].data[j][0].slice(0, 6), y: datas[i].data[j][1] })
+        if (datas[i].data[j][0] === end) break;
       }
-      if (grab) {
-        filteredData.push({ x: datas[i][0].slice(0, 6), y: datas[i][1] })
-      }
-      if (datas[i][0] === end) {
-        break;
-      }
+      allData.push(clientData);
     }
-    return filteredData;
+    return allData;
   }
 
   render() {
-    const data = this.filterData(this.props.startDate, this.props.endDate);
-    console.log(data);
-
+    const datas = this.filterData(this.props.startDate, this.props.endDate);
+    console.log(datas);
     return (
       <XYPlot
         className='MultipleLineChart'
@@ -40,7 +39,11 @@ export class MultipleLineChart extends Component {
         <XAxis />
         <YAxis />
         <HorizontalGridLines />
-        <LineSeries data={data} />
+        {
+          datas.length && datas.map(d => {
+            return (<LineSeries data={d.data} />)
+          })
+        }
       </XYPlot>
     )
   }
