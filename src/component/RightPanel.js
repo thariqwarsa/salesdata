@@ -79,7 +79,7 @@ export class RightPanel extends Component {
             {
               numData.map((d, index) => {
                 return (
-                  <div>
+                  <div key={d.name}>
                     {index > 0 && (<hr></hr>)}
                     <div className="card-text sub-title">{d.name}</div>
                     <div className="card-title">{d.total}</div>

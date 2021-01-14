@@ -24,10 +24,10 @@ export class App extends Component {
   }
 
   render() {
-    // const { startDate, endDate, page } = this.state;
-    const startDate = '09 Sep 2020';
-    const endDate = '17 Sep 2020';
-    const page = this.state.page;
+    const { startDate, endDate, page } = this.state;
+    // const startDate = '09 Sep 2020';
+    // const endDate = '17 Sep 2020';
+    // const page = this.state.page;
 
     return (
       <BrowserRouter>
