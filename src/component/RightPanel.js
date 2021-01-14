@@ -20,7 +20,7 @@ export class RightPanel extends Component {
     let min = Math.min(...filteredData);
     let max = Math.max(...filteredData);
     let sum = filteredData.reduce((a, b) => a + b, 0);
-    let avg = sum / filteredData.length
+    let avg = Math.round(sum / filteredData.length);
     let first = filteredData[0];
     let last = filteredData[filteredData.length - 1];
 
@@ -28,32 +28,32 @@ export class RightPanel extends Component {
       {
         name: 'Total Sales',
         total: `Rp. ${(sum * 1000).toLocaleString(['ban', 'id'])}`,
-        perc: (max - min) / sum * 100
+        perc: ((max - min) / sum * 100).toFixed(1)
       },
       {
         name: 'Paid Order',
         total: max,
-        perc: (max - 1000) / 100
+        perc: ((max - 1000) / 100).toFixed(1)
       },
       {
         name: 'Cancel Order',
         total: min,
-        perc: (min - 1000) / 100
+        perc: ((min - 1000) / 100).toFixed(1)
       },
       {
         name: 'Pending Amount',
         total: `Rp. ${(avg * 1000).toLocaleString(['ban', 'id'])}`,
-        perc: (avg - 1000) / 100
+        perc: ((avg - 1000) / 100).toFixed(1)
       },
       {
         name: 'Pending Order',
         total: first - 1000,
-        perc: (first - 1000) / 100
+        perc: ((first - 1000) / 100).toFixed(1)
       },
       {
         name: 'Shipping',
         total: `Rp. ${(last * 1000).toLocaleString(['ban', 'id'])}`,
-        perc: (last - 1000) / 100
+        perc: ((last - 1000) / 100).toFixed(1)
       }
     ]
   }
