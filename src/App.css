@@ -6,6 +6,33 @@
   margin-left: 70%;
 }
 
+.RightPanel {
+  margin: 1em auto;
+}
+
+.RightPanel .sub-title {
+  opacity: 0.6;
+}
+
+.RightPanel .title {
+  margin: 0.5em;
+  font-size: 0.8em;
+}
+
+.RightPanel .card-body {
+  padding: 0.7em;
+}
+
+.RightPanel .card-title {
+  font-size: 0.7em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.RightPanel .card-text {
+  font-size: 0.45em;
+}
+
 .SalesOverview .container {
   margin: 1em auto;
   display: inline-block;

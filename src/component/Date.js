@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { data } from '../data/year-end.json';
 
 // import redux and actions
 import { connect } from 'react-redux';

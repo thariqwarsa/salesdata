@@ -31,7 +31,6 @@ export class App extends Component {
         <div className='container'>
           <div className='row'>
             <Date homeCallback={this.changeDate} />
-
           </div>
 
           <div className="row">
@@ -39,7 +38,7 @@ export class App extends Component {
 
             </div>
             <div className="col-8">
-              <SalesOverview />
+              <SalesOverview startDate={startDate} endDate={endDate} />
               <MultipleLineChart startDate={startDate} endDate={endDate} />
               <SingleBarChart startDate={startDate} endDate={endDate} />
             </div>

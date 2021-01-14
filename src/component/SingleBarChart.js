@@ -4,7 +4,7 @@ import singleData from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-import { XYPlot, VerticalBarSeries, XAxis, YAxis, LabelSeries } from 'react-vis';
+import { XYPlot, VerticalBarSeries, XAxis, LabelSeries } from 'react-vis';
 
 export class SingleBarChart extends Component {
   constructor(props) {
