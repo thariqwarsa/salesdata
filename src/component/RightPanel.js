@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+
+// import data
 import dynamic from '../data/year-end(single-client).json';
-import overview from '../data/sales-overview.json'
+
+// import react-vis
+import '../../node_modules/react-vis/dist/style.css';
+import { XYPlot, RadialChart } from 'react-vis';
 
 export class RightPanel extends Component {
 
   analyzeData(start, end) {
     const datas = dynamic.data.data[0].data;
-    const { order_cancel, order_paid, order_pending, today_sales,
-      total_cancel, total_pending, total_shipping } = overview.data;
-    let filteredData = []
+    let filteredData = [];
     let grab = false;
 
     for (let i = 0; i < datas.length; i++) {
@@ -61,6 +64,8 @@ export class RightPanel extends Component {
   render() {
     const datas = this.analyzeData(this.props.startDate, this.props.endDate);
 
+    const myData = [{ angle: 10 }, { angle: 5 }, { angle: 2 }]
+
     return (
       <div className='RightPanel'>
         <div className="card">
@@ -82,6 +87,13 @@ export class RightPanel extends Component {
             }
           </div>
         </div>
+
+        <RadialChart
+          width={170}
+          height={170}
+          data={myData}
+          showLabels={() => true}
+        />
       </div >
     )
   }
