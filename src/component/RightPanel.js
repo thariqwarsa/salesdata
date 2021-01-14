@@ -8,51 +8,52 @@ export class RightPanel extends Component {
     const datas = dynamic.data.data[0].data;
     const { order_cancel, order_paid, order_pending, today_sales,
       total_cancel, total_pending, total_shipping } = overview.data;
-    let filterdData = []
+    let filteredData = []
     let grab = false;
 
     for (let i = 0; i < datas.length; i++) {
       if (datas[i][0] === start) grab = true;
-      if (grab) filterdData.push(datas[i][1])
+      if (grab) filteredData.push(datas[i][1])
       if (datas[i][0] === end || i == datas.length - 1) break;
     }
 
-    let min = Math.min(...filterdData);
-    let max = Math.max(...filterdData);
-    let sum = filterdData.reduce((a, b) => a + b, 0);
-    let first = filterdData[0]
-    let last = filterdData[filterdData.length - 1]
+    let min = Math.min(...filteredData);
+    let max = Math.max(...filteredData);
+    let sum = filteredData.reduce((a, b) => a + b, 0);
+    let avg = sum / filteredData.length
+    let first = filteredData[0];
+    let last = filteredData[filteredData.length - 1];
 
     return [
       {
         name: 'Total Sales',
-        total: sum * 1000,
+        total: `Rp. ${(sum * 1000).toLocaleString(['ban', 'id'])}`,
         perc: (max - min) / sum * 100
       },
       {
         name: 'Paid Order',
-        total: 0,
-        perc: 0
+        total: max,
+        perc: (max - 1000) / 100
       },
       {
         name: 'Cancel Order',
-        total: 0,
-        perc: 0
+        total: min,
+        perc: (min - 1000) / 100
       },
       {
         name: 'Pending Amount',
-        total: 0,
-        perc: 0
+        total: `Rp. ${(avg * 1000).toLocaleString(['ban', 'id'])}`,
+        perc: (avg - 1000) / 100
       },
       {
         name: 'Pending Order',
-        total: 0,
-        perc: 0
+        total: first - 1000,
+        perc: (first - 1000) / 100
       },
       {
         name: 'Shipping',
-        total: 0,
-        perc: 0
+        total: `Rp. ${(last * 1000).toLocaleString(['ban', 'id'])}`,
+        perc: (last - 1000) / 100
       }
     ]
   }
@@ -71,8 +72,10 @@ export class RightPanel extends Component {
                   <div>
                     {index > 0 && (<hr></hr>)}
                     <div className="card-text sub-title">{d.name}</div>
-                    <div className="card-title">Rp. {d.total.toLocaleString(['ban', 'id'])}</div>
-                    <div className="card-text">{d.perc}%</div>
+                    <div className="card-title">{d.total}</div>
+                    <div className={`card-text ${d.perc > 0 ? 'increment' : 'decrement'}`}>
+                      {d.perc > 0 && '+'}{d.perc}%
+                    </div>
                   </div>
                 )
               })
