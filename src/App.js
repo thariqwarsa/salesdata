@@ -6,6 +6,7 @@ import SingleBarChart from './component/SingleBarChart.js';
 import MultipleLineChart from './component/MultipleLineChart';
 import SalesOverview from './component/SalesOverview';
 import RightPanel from './component/RightPanel';
+import RoutePanel from './component/RoutePanel';
 
 export class App extends Component {
   constructor(props) {
@@ -22,9 +23,9 @@ export class App extends Component {
   }
 
   render() {
-    const { startDate, endDate } = this.state;
-    // const startDate = '09 Sep 2020';
-    // const endDate = '17 Sep 2020';
+    // const { startDate, endDate } = this.state;
+    const startDate = '09 Sep 2020';
+    const endDate = '17 Sep 2020';
 
     return (
       <div className="App" >
@@ -34,8 +35,8 @@ export class App extends Component {
           </div>
 
           <div className="row">
-            <div className='col-2'>
-
+            <div className='col-2 route-col'>
+              <RoutePanel />
             </div>
             <div className="col-8">
               <SalesOverview startDate={startDate} endDate={endDate} />
