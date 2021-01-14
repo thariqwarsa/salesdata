@@ -46,18 +46,18 @@
   border-right: 1.3px solid rgb(207, 207, 207);
 }
 
-.RoutePanel .notselected {
-  color: #bebebe;
-}
-
 .RoutePanel .selected {
   color: #4285f4;
 }
 
-.RoutePanel div {
+.RoutePanel a {
+  color: #bebebe;
+}
+
+.RoutePanel .route {
   width: 25%;
   margin-left: 60%;
-  margin-bottom: 1.2em;
+  margin-bottom: 1.4em;
   cursor: pointer;
 }
 

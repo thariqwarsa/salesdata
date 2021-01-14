@@ -62,7 +62,7 @@ export class RightPanel extends Component {
       ],
       radialData: [
         { angle: max, innerRadius: 0.7, color: '#4285F4' },
-        { angle: max - min, innerRadius: 0.7, color: '#f4b400' },
+        { angle: first, innerRadius: 0.7, color: '#f4b400' },
         { angle: min, innerRadius: 0.7, color: '#db4437' }
       ]
     }

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 import Date from './component/Date.js'
@@ -14,21 +15,13 @@ export class App extends Component {
     this.state = {
       startDate: null,
       endDate: null,
-      page: 'home'
     }
     this.changeDate = this.changeDate.bind(this);
-    this.changePage = this.changePage.bind(this);
   }
 
   changeDate(start, end) {
     this.setState({ startDate: start, endDate: end });
   }
-
-  changePage(page) {
-    this.setState({ page })
-  }
-
-
 
   render() {
     // const { startDate, endDate, page } = this.state;
@@ -37,37 +30,40 @@ export class App extends Component {
     const page = this.state.page;
 
     return (
-      <div className="App" >
-        <div className='container'>
-          <div className='row'>
-            <Date homeCallback={this.changeDate} />
-          </div>
-
-          <div className="row">
-            <div className='col-2 route-col'>
-              <RoutePanel homeCallback={this.changePage} />
+      <BrowserRouter>
+        <div className="App" >
+          <div className='container'>
+            <div className='row'>
+              <Date homeCallback={this.changeDate} />
             </div>
-            <div className="col-8">
-              {
-                (page === 'home' || page === 'overview') &&
-                <SalesOverview startDate={startDate} endDate={endDate} />
-              }
-              {
-                (page === 'home' || page === 'linechart') &&
-                <MultipleLineChart startDate={startDate} endDate={endDate} />
-              }
-              {
-                (page === 'home' || page === 'barchart') &&
-                <SingleBarChart startDate={startDate} endDate={endDate} />
-              }
 
-            </div>
-            <div className='col-2'>
-              <RightPanel startDate={startDate} endDate={endDate} />
+            <div className="row">
+              <div className='col-2 route-col'>
+                <RoutePanel />
+              </div>
+              <div className="col-8">
+
+                <Switch>
+                  <Route exact path='/' component={() => (
+                    <Fragment>
+                      <SalesOverview startDate={startDate} endDate={endDate} />
+                      <MultipleLineChart startDate={startDate} endDate={endDate} />
+                      <SingleBarChart startDate={startDate} endDate={endDate} />
+                    </Fragment>
+                  )} />
+                  <Route exact path='/overview' component={() => <SalesOverview startDate={startDate} endDate={endDate} />} />
+                  <Route exact path='/linechart' component={() => <MultipleLineChart startDate={startDate} endDate={endDate} />} />
+                  <Route exact path='/barchart' component={() => <SingleBarChart startDate={startDate} endDate={endDate} />} />
+                </Switch>
+
+              </div>
+              <div className='col-2'>
+                <RightPanel startDate={startDate} endDate={endDate} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
