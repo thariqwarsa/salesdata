@@ -7,7 +7,7 @@ export class RoutePanel extends Component {
   }
 
   handleClick(item) {
-    this.setState({ selected: item })
+    this.setState({ selected: item }, () => this.props.homeCallback(item))
   }
 
   render() {

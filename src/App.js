@@ -13,19 +13,28 @@ export class App extends Component {
     super(props);
     this.state = {
       startDate: null,
-      endDate: null
+      endDate: null,
+      page: 'home'
     }
     this.changeDate = this.changeDate.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
   changeDate(start, end) {
     this.setState({ startDate: start, endDate: end });
   }
 
+  changePage(page) {
+    this.setState({ page })
+  }
+
+
+
   render() {
-    // const { startDate, endDate } = this.state;
+    // const { startDate, endDate, page } = this.state;
     const startDate = '09 Sep 2020';
     const endDate = '17 Sep 2020';
+    const page = this.state.page;
 
     return (
       <div className="App" >
@@ -36,12 +45,22 @@ export class App extends Component {
 
           <div className="row">
             <div className='col-2 route-col'>
-              <RoutePanel />
+              <RoutePanel homeCallback={this.changePage} />
             </div>
             <div className="col-8">
-              <SalesOverview startDate={startDate} endDate={endDate} />
-              <MultipleLineChart startDate={startDate} endDate={endDate} />
-              <SingleBarChart startDate={startDate} endDate={endDate} />
+              {
+                (page === 'home' || page === 'overview') &&
+                <SalesOverview startDate={startDate} endDate={endDate} />
+              }
+              {
+                (page === 'home' || page === 'linechart') &&
+                <MultipleLineChart startDate={startDate} endDate={endDate} />
+              }
+              {
+                (page === 'home' || page === 'barchart') &&
+                <SingleBarChart startDate={startDate} endDate={endDate} />
+              }
+
             </div>
             <div className='col-2'>
               <RightPanel startDate={startDate} endDate={endDate} />
