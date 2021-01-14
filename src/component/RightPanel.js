@@ -27,44 +27,49 @@ export class RightPanel extends Component {
     let first = filteredData[0];
     let last = filteredData[filteredData.length - 1];
 
-    return [
-      {
-        name: 'Total Sales',
-        total: `Rp. ${(sum * 1000).toLocaleString(['ban', 'id'])}`,
-        perc: ((max - min) / sum * 100).toFixed(1)
-      },
-      {
-        name: 'Paid Order',
-        total: max,
-        perc: ((max - 1000) / 100).toFixed(1)
-      },
-      {
-        name: 'Cancel Order',
-        total: min,
-        perc: ((min - 1000) / 100).toFixed(1)
-      },
-      {
-        name: 'Pending Amount',
-        total: `Rp. ${(avg * 1000).toLocaleString(['ban', 'id'])}`,
-        perc: ((avg - 1000) / 100).toFixed(1)
-      },
-      {
-        name: 'Pending Order',
-        total: first - 1000,
-        perc: ((first - 1000) / 100).toFixed(1)
-      },
-      {
-        name: 'Shipping',
-        total: `Rp. ${(last * 1000).toLocaleString(['ban', 'id'])}`,
-        perc: ((last - 1000) / 100).toFixed(1)
-      }
-    ]
+    return {
+      numData: [
+        {
+          name: 'Total Sales',
+          total: `Rp. ${(sum * 1000).toLocaleString(['ban', 'id'])}`,
+          perc: ((max - min) / sum * 100).toFixed(1)
+        },
+        {
+          name: 'Paid Order',
+          total: max,
+          perc: ((max - 1000) / 100).toFixed(1)
+        },
+        {
+          name: 'Cancel Order',
+          total: min,
+          perc: ((min - 1000) / 100).toFixed(1)
+        },
+        {
+          name: 'Pending Amount',
+          total: `Rp. ${(avg * 1000).toLocaleString(['ban', 'id'])}`,
+          perc: ((avg - 1000) / 100).toFixed(1)
+        },
+        {
+          name: 'Pending Order',
+          total: first - 1000,
+          perc: ((first - 1000) / 100).toFixed(1)
+        },
+        {
+          name: 'Shipping',
+          total: `Rp. ${(last * 1000).toLocaleString(['ban', 'id'])}`,
+          perc: ((last - 1000) / 100).toFixed(1)
+        }
+      ],
+      radialData: [
+        { angle: max, innerRadius: 0.7, color: '#4285F4' },
+        { angle: max - min, innerRadius: 0.7, color: '#f4b400' },
+        { angle: min, innerRadius: 0.7, color: '#db4437' }
+      ]
+    }
   }
 
   render() {
-    const datas = this.analyzeData(this.props.startDate, this.props.endDate);
-
-    const myData = [{ angle: 10 }, { angle: 5 }, { angle: 2 }]
+    const { numData, radialData } = this.analyzeData(this.props.startDate, this.props.endDate);
 
     return (
       <div className='RightPanel'>
@@ -72,7 +77,7 @@ export class RightPanel extends Component {
           <div className="title">Sales Summary</div>
           <div className="card-body">
             {
-              datas.map((d, index) => {
+              numData.map((d, index) => {
                 return (
                   <div>
                     {index > 0 && (<hr></hr>)}
@@ -89,10 +94,10 @@ export class RightPanel extends Component {
         </div>
 
         <RadialChart
-          width={170}
-          height={170}
-          data={myData}
-          showLabels={() => true}
+          width={160}
+          height={160}
+          data={radialData}
+          colorType='literal'
         />
       </div >
     )
