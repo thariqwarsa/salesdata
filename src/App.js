@@ -29,12 +29,16 @@ export class App extends Component {
     return (
       <div className="App" >
         <div className='container'>
+          <div className='row'>
+            <Date homeCallback={this.changeDate} />
+
+          </div>
+
           <div className="row">
             <div className='col-2'>
 
             </div>
             <div className="col-8">
-              <Date homeCallback={this.changeDate} />
               <SalesOverview />
               <MultipleLineChart startDate={startDate} endDate={endDate} />
               <SingleBarChart startDate={startDate} endDate={endDate} />
