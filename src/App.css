@@ -46,13 +46,19 @@
   border-right: 1.3px solid rgb(207, 207, 207);
 }
 
-.RoutePanel svg {
-  margin-left: 60%;
+.RoutePanel .notselected {
+  color: #bebebe;
+}
+
+.RoutePanel .selected {
   color: #4285f4;
 }
 
 .RoutePanel div {
-  margin: 1.6em;
+  width: 25%;
+  margin-left: 60%;
+  margin-bottom: 1.2em;
+  cursor: pointer;
 }
 
 .SalesOverview .container {
