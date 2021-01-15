@@ -1,8 +1,69 @@
 .App .container {
-  max-width: 40em;
+  max-width: 64em;
+}
+
+.Date {
+  margin-left: 70%;
+}
+
+.RightPanel {
+  margin: 1em auto;
+}
+
+.RightPanel .sub-title {
+  opacity: 0.6;
+}
+
+.RightPanel .title {
+  margin: 0.5em;
+  font-size: 0.7em;
+  opacity: 0.6;
+}
+
+.RightPanel .card-body {
+  padding: 0.7em;
+}
+
+.RightPanel .card-title {
+  font-size: 0.7em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.RightPanel .card-text {
+  font-size: 0.45em;
+}
+
+.increment {
+  color: #0f9d58;
+}
+
+.decrement {
+  color: #db4437;
+}
+
+.route-col {
+  border-right: 1.3px solid rgb(207, 207, 207);
+}
+
+.RoutePanel .selected {
+  color: #4285f4;
+}
+
+.RoutePanel a {
+  color: #bebebe;
+}
+
+.RoutePanel .route {
+  width: 25%;
+  margin-left: 60%;
+  margin-bottom: 1.4em;
+  cursor: pointer;
 }
 
 .SalesOverview .container {
+  margin: 1em auto;
+  display: inline-block;
   padding: 1em;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25em;
