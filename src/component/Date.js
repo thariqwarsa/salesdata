@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-// import redux and actions
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-
 // import date picker
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
@@ -62,8 +58,4 @@ export class Date extends Component {
   }
 }
 
-function mapStateToProps({ date }) {
-  return { date };
-}
-
-export default connect(mapStateToProps, actions)(Date);
+export default Date;
