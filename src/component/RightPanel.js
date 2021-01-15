@@ -10,7 +10,7 @@ import { data } from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-import { XYPlot, RadialChart } from 'react-vis';
+import { XYPlot, RadialChart, DiscreteColorLegend } from 'react-vis';
 
 export class RightPanel extends Component {
 
@@ -80,10 +80,11 @@ export class RightPanel extends Component {
       // angle: a num to be converted as portion of radial degree by RadialChart component
       // innerRadius: to create donut shape
       // color: color of each data
+      // title: name of each data for labeling
       radialData: [
-        { angle: max, innerRadius: 0.7, color: '#4285F4' },
-        { angle: first, innerRadius: 0.7, color: '#f4b400' },
-        { angle: min, innerRadius: 0.7, color: '#db4437' }
+        { title: 'Awareness', angle: max, innerRadius: 0.7, color: '#4285F4' },
+        { title: 'Traffics', angle: first, innerRadius: 0.7, color: '#f4b400' },
+        { title: 'Contention', angle: min, innerRadius: 0.7, color: '#db4437' }
       ]
     }
   }
@@ -92,9 +93,13 @@ export class RightPanel extends Component {
     // grab numData and radialData from analyzeData function
     // analyzeData function takes startDate and endDate as props from parent (App.js);
     const { numData, radialData } = this.analyzeData(this.props.startDate, this.props.endDate);
+    // parse radialData for DiscreteColorLegend 
+    const labels = radialData.map(d => {
+      return { title: d.title, color: d.color, strokeWidth: 4 }
+    });
 
     return (
-      <div className='RightPanel'>
+      <div className='RightPanel' >
         <div className="card">
           <div className="title">Sales Summary</div>
           <div className="card-body">
@@ -125,6 +130,12 @@ export class RightPanel extends Component {
           data={radialData}
           colorType='literal'
         />
+        <DiscreteColorLegend
+          className='legend'
+          items={labels}
+          orientation='vertical' width={160}
+        />
+
       </div >
     )
   }

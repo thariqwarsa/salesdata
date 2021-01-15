@@ -34,6 +34,10 @@
   font-size: 0.45em;
 }
 
+.RightPanel .legend .rv-discrete-color-legend-item {
+  padding: 2px;
+}
+
 .increment {
   color: #0f9d58;
 }
