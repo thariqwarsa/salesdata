@@ -31,6 +31,7 @@ export class RightPanel extends Component {
       if (datas[i][0] === end) break;
     }
 
+    // find min, max, sum, average, first, and last element of filteredData array
     let min = Math.min(...filteredData);
     let max = Math.max(...filteredData);
     let sum = filteredData.reduce((a, b) => a + b, 0);
@@ -38,7 +39,7 @@ export class RightPanel extends Component {
     let first = filteredData[0];
     let last = filteredData[filteredData.length - 1];
 
-    // returned data consist of 2 parts:
+    // returned data consist of 2 parts: numData and radialData
     return {
       // NUMDATA is array of object that will be feed to for each sections on top of right panel.
       // name: title of each section
@@ -84,7 +85,7 @@ export class RightPanel extends Component {
       radialData: [
         { title: 'Awareness', angle: max, innerRadius: 0.7, color: '#4285F4' },
         { title: 'Traffics', angle: first, innerRadius: 0.7, color: '#f4b400' },
-        { title: 'Contention', angle: min, innerRadius: 0.7, color: '#db4437' }
+        { title: 'Contention', angle: max - min, innerRadius: 0.7, color: '#db4437' }
       ]
     }
   }
@@ -125,6 +126,7 @@ export class RightPanel extends Component {
         </div>
 
         <RadialChart
+          animation={() => true}
           width={160}
           height={160}
           data={radialData}
