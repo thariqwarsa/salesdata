@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import data from json
-import singleData from '../data/year-end(single-client).json';
+import { data } from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
@@ -15,7 +15,7 @@ export class SingleBarChart extends Component {
   }
 
   filterData(start, end) {
-    const datas = singleData.data.data[0].data;
+    const datas = data.data[0].data;
     let grab = false;
     let filteredData = [];
 
@@ -40,7 +40,7 @@ export class SingleBarChart extends Component {
   }
 
   render() {
-    const data = this.filterData(this.props.startDate, this.props.endDate)
+    const datas = this.filterData(this.props.startDate, this.props.endDate)
 
     return (
       <XYPlot
@@ -50,12 +50,17 @@ export class SingleBarChart extends Component {
         xType="ordinal"
       >
         <XAxis />
+
         <VerticalBarSeries
           barWidth={0.6}
-          data={data}
+          data={datas}
           color='#4285f4'
         />
-        <LabelSeries data={data} />
+        <LabelSeries
+          data={datas}
+          labelAnchorX="middle"
+          labelAnchorY="text-before-edge"
+        />
 
       </XYPlot>
     )
