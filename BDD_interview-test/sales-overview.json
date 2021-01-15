@@ -1,0 +1,13 @@
+{
+    "response":"HTTP 200 OK",
+    "message":"Your request has been successfuly executed",
+    "data": {
+        "today_sales":-26220185,
+        "order_paid":181,
+        "total_cancel":-71799612,
+        "order_cancel":328,
+        "order_pending":127,
+        "total_pending":35913567,
+        "total_shipping":-1002000
+    }
+}
