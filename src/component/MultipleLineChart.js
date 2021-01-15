@@ -42,7 +42,6 @@ export class MultipleLineChart extends Component {
         >
           <XAxis
             tickFormat={(t, i) => {
-              console.log(datas[0].data.length)
               if (datas[0].data.length < 18) return t.split(',')[0];
               if ((i + 1) % 5 === 0) return t.split(',')[0];
               else return;
