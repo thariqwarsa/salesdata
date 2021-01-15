@@ -124,7 +124,7 @@ export class RightPanel extends Component {
             }
           </div>
         </div>
-
+        <div className='chart-title'>Budget Chart</div>
         <RadialChart
           animation={() => true}
           width={160}

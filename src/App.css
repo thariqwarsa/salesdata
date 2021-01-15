@@ -37,6 +37,13 @@
 .RightPanel .legend .rv-discrete-color-legend-item {
   padding: 2px;
 }
+.RightPanel .chart-title {
+  position: absolute;
+  font-size: 11px;
+  text-align: center;
+  width: 160px;
+  margin: 70px 0;
+}
 
 .increment {
   color: #0f9d58;
