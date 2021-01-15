@@ -17,27 +17,31 @@ import { data } from '../data/year-end(single-client).json';
 export class Date extends Component {
   constructor(props) {
     super(props);
-    const { range_date } = data;
-    this.state = {
-      startDate: moment(range_date[range_date.length - 8]),
-      endDate: moment(range_date[range_date.length - 1])
-    }
+    this.state = { startDate: null, endDate: null }
   }
 
-  componentDidUpdate = (prevProps) => {
-    if (
-      prevProps.date.startDate !== this.state.startDate
-      || prevProps.date.endDate !== this.state.endDate
-    ) {
-      const start = !!this.state.startDate ? this.state.startDate.format('DD MMM YYYY') : '';
-      const end = !!this.state.endDate ? this.state.endDate.format('DD MMM YYYY') : '';
-      this.props.homeCallback(start, end);
-    }
+  handleChangeDate(startDate, endDate) {
+    this.setState({ startDate, endDate }, () => {
+      if (startDate !== null && endDate !== null) {
+        this.props.homeCallback(
+          startDate.format('DD MMM YYYY'),
+          endDate.format('DD MMM YYYY')
+        );
+      }
+    })
   }
 
   componentDidMount() {
-    const { startDate, endDate } = this.state;
-    this.props.homeCallback(startDate.format('DD MMM YYYY'), endDate.format('DD MMM YYYY'));
+    const { range_date } = data;
+    this.setState({
+      startDate: moment(range_date[range_date.length - 8]),
+      endDate: moment(range_date[range_date.length - 1])
+    }, () =>
+      this.props.homeCallback(
+        this.state.startDate.format('DD MMM YYYY'),
+        this.state.endDate.format('DD MMM YYYY')
+      )
+    )
   }
 
   render() {
@@ -48,7 +52,7 @@ export class Date extends Component {
           startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
           endDate={this.state.endDate} // momentPropTypes.momentObj or null,
           endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-          onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+          onDatesChange={({ startDate, endDate }) => this.handleChangeDate(startDate, endDate)} // PropTypes.func.isRequired,
           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
           isOutsideRange={() => false}
