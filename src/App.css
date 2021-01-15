@@ -102,6 +102,10 @@
   margin: 1em auto;
 }
 
+.SingleBarChart .rv-xy-plot__series--label {
+  fill: white;
+}
+
 .MultipleLineChart {
   margin: 1em auto;
 }
