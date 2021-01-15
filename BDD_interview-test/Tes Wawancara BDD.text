@@ -1,0 +1,50 @@
+Tes Wawancara BDD
+Deskripsi test :
+
+Proyek uji coba ini bertujuan untuk melihat spesifikasi kebutuhan front-end developer.
+Silahkan untuk membuat 1 project menggunakan basis pemrograman VueJs
+Proyek ini memuat konten data analytics yang disajikan dalam bentik overview atau grafik chart. 
+
+
+1. Implementasi design UI/UX yang telah kami sediakan, 
+silahkan menggunakan framework css atau custom yang and a kuasai.
+
+2. 3 panel diatas dimaksudkan untuk menampilkan data overview 
+yang telah kami sediakan pada file json (sales-overview.json), 
+berikan ilustrasi ketika rentang tanggal dirubah maka data yang 
+bereda di dalam panel tersebut berubah.
+
+3. Gunakan file json year-end.json atau year-end(single-client).json 
+untuk memuat data analytics pada grafik line ataupun bar, 
+silahkan gunakan resource tersebut untuk 
+menampilkan data yang sudah di olah. 
+Khusus untuk file year-end.json data yang dimuat dalam satu object 
+ada beberapa alien yang data diartikan dalam satu chart tersebut 
+bisa termuat 1 atau lebih klien. berikan ilustrasi ketika rentang 
+tanggal dirubah maka data yang bereda di dalam panel tersebut berubah.
+
+5. 2 panel di sebelah kanan, silahkan anda menggunakan source api 
+dari sumber lain / json yang disediakan / json dummy / array object 
+value yang dinamis.
+
+6. Panel date ranges, berfungsi untuk pemilihan rentang tanggal dan 
+secara responsive data yang dimuat pada dashboard menyesuaikan 
+dengan date range yang dipilih, silahkan set last week untuk default 
+range date tersebut.
+
+7. Gunakan panel kiri untuk routing page, memuat salah satu dari 
+content dashboard halaman utama.
+
+silahkan improve untuk mengolah file json yang sudah disediakan.
+untuk mengambil data secara langsung atau spesifik terkait dengan date range, 
+anda bisa menggunakan filtering pada json tersebut dengan metode yang anda kuasai atau mengekstrak json tersebut mengunakan metode lain.
+perhatikan penulisan kode yang sesuai pengan framework yang digunakan, gunakan penamaan variable yang jelas , penjelasan dari baris code / function yang dibuat.
+
+
+Silahkan nutuk upload project tersebut ke GitHub anda.
+share link GitHub anda ke kami lewat email :
+armand@bolehdicoba.com
+saddat@bolehdicoba.com
+
+
+selamat mengerjakan.
