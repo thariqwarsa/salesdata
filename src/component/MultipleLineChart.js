@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import multipleData from '../data/year-end.json';
+import { data } from '../data/year-end.json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
@@ -8,7 +8,7 @@ import { XYPlot, LineSeries, XAxis, YAxis, HorizontalGridLines, DiscreteColorLeg
 export class MultipleLineChart extends Component {
 
   filterData(start, end) {
-    const datas = Object.values(multipleData.data.metric.clicks);
+    const datas = Object.values(data.metric.clicks);
     let grab = false;
     let allData = [];
     let clientData = {};
@@ -40,9 +40,16 @@ export class MultipleLineChart extends Component {
           height={200}
 
         >
-          <XAxis />
-          <YAxis />
+          <XAxis
+            tickFormat={(t, i) => {
+              console.log(datas[0].data.length)
+              if (datas[0].data.length < 18) return t.split(',')[0];
+              if ((i + 1) % 5 === 0) return t.split(',')[0];
+              else return;
+            }}
+          />
 
+          <YAxis />
           <HorizontalGridLines />
           {
             datas.length && datas.map(d => {

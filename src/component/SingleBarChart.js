@@ -9,9 +9,7 @@ import { XYPlot, VerticalBarSeries, XAxis, LabelSeries } from 'react-vis';
 export class SingleBarChart extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: []
-    }
+    this.state = { data: [] }
   }
 
   filterData(start, end) {

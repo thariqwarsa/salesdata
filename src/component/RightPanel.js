@@ -5,7 +5,7 @@ import dynamic from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-import { XYPlot, RadialChart } from 'react-vis';
+import { RadialChart } from 'react-vis';
 
 export class RightPanel extends Component {
 
@@ -17,7 +17,7 @@ export class RightPanel extends Component {
     for (let i = 0; i < datas.length; i++) {
       if (datas[i][0] === start) grab = true;
       if (grab) filteredData.push(datas[i][1])
-      if (datas[i][0] === end || i == datas.length - 1) break;
+      if (datas[i][0] === end || i === datas.length - 1) break;
     }
 
     let min = Math.min(...filteredData);
