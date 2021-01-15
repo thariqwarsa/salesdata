@@ -1,23 +1,32 @@
+// ============== RIGHT PANEL ============== 
+// this component take start date and end date, and also data from year-end(single-client).json
+// then, the data will be processed and visualized as number, percentage, and pie chart
+// the data processing is completely unrelated to any goals. just to show the result will change based on dates
+
 import React, { Component } from 'react';
 
 // import data
-import dynamic from '../data/year-end(single-client).json';
+import { data } from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-import { XYPlot, RadialChart } from 'react-vis';
+import { RadialChart } from 'react-vis';
 
 export class RightPanel extends Component {
 
   analyzeData(start, end) {
-    const datas = dynamic.data.data[0].data;
+    const datas = data.data[0].data;
     let filteredData = [];
     let grab = false;
 
     for (let i = 0; i < datas.length; i++) {
-      if (datas[i][0] === start) grab = true;
-      if (grab) filteredData.push(datas[i][1])
-      if (datas[i][0] === end || i == datas.length - 1) break;
+      if (datas[i][0] === start) {
+        grab = true;
+      }
+      if (grab) {
+        filteredData.push(datas[i][1])
+      }
+      if (datas[i][0] === end) break;
     }
 
     let min = Math.min(...filteredData);
