@@ -8,14 +8,19 @@ import * as actions from '../actions';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import * as moment from 'moment';
+
+// import start and end date from .json
+import { data } from '../data/year-end(single-client).json';
 
 
 export class Date extends Component {
   constructor(props) {
     super(props);
+    const { range_date } = data;
     this.state = {
-      startDate: null,
-      endDate: null
+      startDate: moment(range_date[range_date.length - 8]),
+      endDate: moment(range_date[range_date.length - 1])
     }
   }
 
@@ -30,8 +35,12 @@ export class Date extends Component {
     }
   }
 
-  render() {
+  componentDidMount() {
+    const { startDate, endDate } = this.state;
+    this.props.homeCallback(startDate.format('DD MMM YYYY'), endDate.format('DD MMM YYYY'));
+  }
 
+  render() {
     return (
       <div className='Date' style={{ float: 'right' }}>
         <DateRangePicker
