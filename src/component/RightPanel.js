@@ -1,6 +1,6 @@
 // ============== RIGHT PANEL ============== 
 // this component take start date and end date, and also data from year-end(single-client).json
-// then, the data will be processed and visualized as number, percentage, and pie chart
+// then, the data will be processed and visualized as number, percentage, and radial chart
 // the data processing is completely unrelated to any goals. just to show the result will change based on dates
 
 import React, { Component } from 'react';
@@ -10,10 +10,12 @@ import { data } from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-import { RadialChart } from 'react-vis';
+import { XYPlot, RadialChart } from 'react-vis';
 
 export class RightPanel extends Component {
 
+  // analyzeData function take start and end date as argument 
+  // and create processed data to feed to top section(s) of right panel
   analyzeData(start, end) {
     const datas = data.data[0].data;
     let filteredData = [];
@@ -36,7 +38,12 @@ export class RightPanel extends Component {
     let first = filteredData[0];
     let last = filteredData[filteredData.length - 1];
 
+    // returned data consist of 2 parts:
     return {
+      // NUMDATA is array of object that will be feed to for each sections on top of right panel.
+      // name: title of each section
+      // total: number of each section (currency or normal number)
+      // perc: percantage
       numData: [
         {
           name: 'Total Sales',
@@ -69,6 +76,10 @@ export class RightPanel extends Component {
           perc: ((last - 1000) / 100).toFixed(1)
         }
       ],
+      // RADIAL DATA is feed to radial chart
+      // angle: a num to be converted as portion of radial degree by RadialChart component
+      // innerRadius: to create donut shape
+      // color: color of each data
       radialData: [
         { angle: max, innerRadius: 0.7, color: '#4285F4' },
         { angle: first, innerRadius: 0.7, color: '#f4b400' },
@@ -78,6 +89,8 @@ export class RightPanel extends Component {
   }
 
   render() {
+    // grab numData and radialData from analyzeData function
+    // analyzeData function takes startDate and endDate as props from parent (App.js);
     const { numData, radialData } = this.analyzeData(this.props.startDate, this.props.endDate);
 
     return (
@@ -85,6 +98,9 @@ export class RightPanel extends Component {
         <div className="card">
           <div className="title">Sales Summary</div>
           <div className="card-body">
+            {/* 
+              map numData to create each sections on top of right panel
+            */}
             {
               numData.map((d, index) => {
                 return (
@@ -92,6 +108,7 @@ export class RightPanel extends Component {
                     {index > 0 && (<hr></hr>)}
                     <div className="card-text sub-title">{d.name}</div>
                     <div className="card-title">{d.total}</div>
+                    {/* set font color to green if perc is positive. otherwise, red */}
                     <div className={`card-text ${d.perc > 0 ? 'increment' : 'decrement'}`}>
                       {d.perc > 0 && '+'}{d.perc}%
                     </div>
