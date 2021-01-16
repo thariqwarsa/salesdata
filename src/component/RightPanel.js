@@ -10,7 +10,7 @@ import { data } from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-import { XYPlot, RadialChart, DiscreteColorLegend, Hint } from 'react-vis';
+import { RadialChart, DiscreteColorLegend, Hint } from 'react-vis';
 
 export class RightPanel extends Component {
   constructor(props) {
@@ -89,15 +89,14 @@ export class RightPanel extends Component {
       // color: color of each data
       // title: name of each data for labeling
       radialData: [
-        { title: 'Awareness', angle: max, innerRadius: 0.7, color: '#4285F4' },
-        { title: 'Traffics', angle: first, innerRadius: 0.7, color: '#f4b400' },
-        { title: 'Contention', angle: max - min, innerRadius: 0.7, color: '#db4437' }
+        { title: 'Awareness', angle: max, value: max / (2 * max + first - min) * 100, innerRadius: 0.7, color: '#4285F4' },
+        { title: 'Traffics', angle: first, value: min / (2 * max + first - min) * 100, innerRadius: 0.7, color: '#f4b400' },
+        { title: 'Contention', angle: max - min, value: (max - min) / (2 * max + first - min) * 100, innerRadius: 0.7, color: '#db4437' }
       ]
     }
   }
 
   rememberValue(value) {
-    console.log(value);
     this.setState({ value: value })
   }
 
@@ -155,7 +154,7 @@ export class RightPanel extends Component {
             (
               <Hint value={this.state.value}>
                 <div style={{ color: this.state.value.color }}>
-                  {this.state.value.title}: 100%
+                  {this.state.value.title}: {this.state.value.value.toFixed(1)}%
                 </div>
               </Hint>
             )
