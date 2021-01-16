@@ -25,10 +25,16 @@ export class RightPanel extends Component {
   // analyzeData function take start and end date as argument 
   // and create processed data to feed to top section(s) of right panel
   analyzeData(start, end) {
+    // grab datas from json
     const datas = data.data[0].data;
+    // initialize empty array to store filtered data
     let filteredData = [];
+    // initialize boolean variable as flag to collect data
     let grab = false;
 
+    // loop through data. 
+    // start collecting data if the date match startDate. 
+    // break when reach endDate
     for (let i = 0; i < datas.length; i++) {
       if (datas[i][0] === start) {
         grab = true;
