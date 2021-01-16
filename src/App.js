@@ -34,34 +34,38 @@ export class App extends Component {
         <div className="App" >
           <div className='container'>
             <div className='row'>
-              <div className='col-6'>
-                <div className='main-title'>Dashboard</div>
-              </div>
-              <div className='col-6'>
-                <Date homeCallback={this.changeDate} />
-              </div>
-            </div>
-
-            <div className="row">
               <div className='col-2 route-col'>
                 <RoutePanel />
               </div>
-              <div className="col-8">
-                <Switch>
-                  <Route exact path='/' component={() => (
-                    <Fragment>
-                      <SalesOverview startDate={startDate} endDate={endDate} />
-                      <MultipleLineChart startDate={startDate} endDate={endDate} />
-                      <SingleBarChart startDate={startDate} endDate={endDate} />
-                    </Fragment>
-                  )} />
-                  <Route exact path='/overview' component={() => <SalesOverview startDate={startDate} endDate={endDate} />} />
-                  <Route exact path='/linechart' component={() => <MultipleLineChart startDate={startDate} endDate={endDate} />} />
-                  <Route exact path='/barchart' component={() => <SingleBarChart startDate={startDate} endDate={endDate} />} />
-                </Switch>
-              </div>
-              <div className='col-2'>
-                <RightPanel startDate={startDate} endDate={endDate} />
+              <div className='col-10'>
+                <div className='row'>
+                  <div className='col-6'>
+                    <div className='main-title'>Dashboard</div>
+                  </div>
+                  <div className='col-6'>
+                    <Date homeCallback={this.changeDate} />
+                  </div>
+                </div>
+                <div className='row'>
+                  <div className='col-9'>
+                    <Switch>
+                      <Route exact path='/' component={() => (
+                        <Fragment>
+                          <SalesOverview startDate={startDate} endDate={endDate} />
+                          <MultipleLineChart startDate={startDate} endDate={endDate} />
+                          <SingleBarChart startDate={startDate} endDate={endDate} />
+                        </Fragment>
+                      )} />
+                      <Route exact path='/overview' component={() => <SalesOverview startDate={startDate} endDate={endDate} />} />
+                      <Route exact path='/linechart' component={() => <MultipleLineChart startDate={startDate} endDate={endDate} />} />
+                      <Route exact path='/barchart' component={() => <SingleBarChart startDate={startDate} endDate={endDate} />} />
+                    </Switch>
+                  </div>
+                  <div className='col-3'>
+                    <RightPanel startDate={startDate} endDate={endDate} />
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>

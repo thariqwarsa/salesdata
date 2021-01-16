@@ -3,7 +3,7 @@
 }
 
 .App .main-title {
-  margin-left: 18%;
+  margin-left: 0.1em;
   margin-top: 0.8em;
   font-size: 1.3em;
   color: #838383;
@@ -73,6 +73,7 @@
 
 .route-col {
   border-right: 1.3px solid rgb(207, 207, 207);
+  padding-top: 5em;
 }
 
 .RoutePanel .selected {
