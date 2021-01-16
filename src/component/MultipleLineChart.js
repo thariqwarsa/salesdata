@@ -11,46 +11,81 @@ import {
 export class MultipleLineChart extends Component {
   constructor(props) {
     super(props);
-    this.state = { crosshairValue: [] }
+    this.state = { crosshairValue: null, hoveredDate: null }
     this._onMouseLeave = this._onMouseLeave.bind(this);
     this._onNearestX = this._onNearestX.bind(this);
   }
 
   filterData(start, end) {
-    const datas = Object.values(data.metric.clicks);
+    const rawData = Object.values(data.metric.clicks);
     let grab = false;
-    let allData = [];
+    let lineData = [];
     let clientData = {};
-    let clientNum = 4
-
+    let clientNum = 4;
+    // create data for linechart
     for (let i = 0; i < clientNum; i++) {
-      clientData = { 'account_name': datas[i].account_name, 'data': [] }
+      clientData = { 'account_name': rawData[i].account_name, 'data': [] };
       grab = false;
-      for (let j = 0; j < datas[i].data.length; j++) {
-        if (datas[i].data[j][0] === start) grab = true;
-        if (grab) clientData.data.push({ x: datas[i].data[j][0].slice(0, 6), y: datas[i].data[j][1], account_name: datas[i].account_name })
-        if (datas[i].data[j][0] === end) break;
+
+      for (let j = 0; j < rawData[i].data.length; j++) {
+        if (rawData[i].data[j][0] === start) {
+          grab = true;
+        }
+        if (grab) {
+          clientData.data.push({
+            x: rawData[i].data[j][0].slice(0, 6),
+            y: rawData[i].data[j][1],
+            account_name: rawData[i].account_name
+          });
+        }
+        if (rawData[i].data[j][0] === end) break;
       }
-      allData.push(clientData);
+      lineData.push(clientData);
     }
-    return allData;
+    // create data for crosshair
+    let currentDate;
+    let crosshairData = [];
+    grab = false;
+
+    for (let i = 0; i < lineData[0].data.length - 1; i++) {
+      currentDate = {
+        x: lineData[0].data[i].x,
+        data: []
+      }
+      for (let j = 0; j < lineData.length; j++) {
+        currentDate.data.push({
+          account_name: lineData[j].account_name,
+          y: lineData[j].data[i].y
+        });
+      }
+      crosshairData.push(currentDate);
+    }
+    // [
+    //   { clientName, data: [{ x: date, x: y }, { date, y }... ] }
+    // ]
+
+    // [
+    //   { date: [{ client, value }, { client, value }... ] }
+    // ]
+
+    return { lineData, crosshairData };
   }
 
   _onMouseLeave() {
-    this.setState({ crosshairValues: [] });
+    this.setState({ crosshairValue: null });
   }
 
   _onNearestX(value) {
-    this.setState({ crosshairValues: value });
+    this.setState({ crosshairValue: value });
   }
 
   render() {
-    const datas = this.filterData(this.props.startDate, this.props.endDate);
-    const account_names = datas.map(d => d.account_name);
-    const { crosshairValue } = this.state;
+    const { lineData, crosshairData } = this.filterData(this.props.startDate, this.props.endDate);
+    const account_names = lineData.map(d => d.account_name);
+    const { crosshairValue, hoveredDate } = this.state;
 
     return (
-      < div className="MultipleLineChart" >
+      <div className="MultipleLineChart" >
         <XYPlot
           xType="ordinal"
           className='MultipleLineChart'
@@ -59,7 +94,7 @@ export class MultipleLineChart extends Component {
         >
           <XAxis
             tickFormat={(t, i) => {
-              if (datas[0].data.length < 18) return t.split(',')[0];
+              if (lineData[0].data.length < 18) return t.split(',')[0];
               if ((i + 1) % 5 === 0) return t.split(',')[0];
               else return;
             }}
@@ -68,23 +103,30 @@ export class MultipleLineChart extends Component {
           <YAxis />
           <HorizontalGridLines />
           {
-            datas.length && datas.map(d => {
+            lineData.length && lineData.map(d => {
               return (
                 <LineSeries
                   key={d.account_name}
                   data={d.data}
                   curve={'curveMonotoneX'}
-                  onNearestX={this._onNearestX}
-                  onMouseLeave={this._onMouseLeave}
+                  onNearestX={(value, { index }) => this.setState({ crosshairValue: crosshairData[index], hoveredDate: value.x })}
+                  onMouseLeave={() => this.setState({ crosshairValue: null, hoveredDate: null })}
                 />
               )
             })
           }
           {
             crosshairValue &&
-            <Crosshair values={[crosshairValue]}>
+            <Crosshair values={crosshairData}>
               <div style={{ backgroundColor: 'white', border: '1px solid black', width: '12em' }}>
-                <div>{crosshairValue.x}</div>
+                <div>{hoveredDate}</div>
+                {
+                  crosshairValue.data.map(d => {
+                    return (
+                      <div key={d.account_name}>{d.account_name}: {d.y}</div>
+                    )
+                  })
+                }
               </div>
             </Crosshair>
           }
