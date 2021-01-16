@@ -10,9 +10,15 @@ import { data } from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-import { XYPlot, RadialChart, DiscreteColorLegend } from 'react-vis';
+import { XYPlot, RadialChart, DiscreteColorLegend, Hint } from 'react-vis';
 
 export class RightPanel extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: null }
+    this.rememberValue = this.rememberValue.bind(this);
+    this.forgetValue = this.forgetValue.bind(this);
+  }
 
   // analyzeData function take start and end date as argument 
   // and create processed data to feed to top section(s) of right panel
@@ -90,6 +96,15 @@ export class RightPanel extends Component {
     }
   }
 
+  rememberValue(value) {
+    console.log(value);
+    this.setState({ value: value })
+  }
+
+  forgetValue() {
+    this.setState({ value: null })
+  }
+
   render() {
     // grab numData and radialData from analyzeData function
     // analyzeData function takes startDate and endDate as props from parent (App.js);
@@ -125,13 +140,27 @@ export class RightPanel extends Component {
           </div>
         </div>
         <div className='chart-title'>Budget Chart</div>
+
         <RadialChart
-          animation={() => true}
+          animation
           width={160}
           height={160}
           data={radialData}
           colorType='literal'
-        />
+          onValueMouseOver={this.rememberValue}
+          onValueMouseOut={this.forgetValue}
+        >
+          {
+            this.state.value &&
+            (
+              <Hint value={this.state.value}>
+                <div style={{ color: this.state.value.color }}>
+                  {this.state.value.title}: 100%
+                </div>
+              </Hint>
+            )
+          }
+        </RadialChart>
         <DiscreteColorLegend
           className='legend'
           items={labels}
