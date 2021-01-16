@@ -1,44 +1,58 @@
-import React, { Component } from 'react'
+// ======= SINGLE BAR CHART ===========
+// this component takes startDate and endDate from parent (App.js) as props
+// then, it used them to filter and format data from year-end(single-client).json
+// finally, it visualize the data as labelled barchart
+
+import React, { Component } from 'react';
+
 // import data from json
-import singleData from '../data/year-end(single-client).json';
+import { data } from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
 import { XYPlot, VerticalBarSeries, XAxis, LabelSeries } from 'react-vis';
 
+// import moment
+import * as moment from 'moment';
+
 export class SingleBarChart extends Component {
+<<<<<<< HEAD
   constructor(props) {
     super(props);
     this.state = { data: [] }
   }
+=======
+>>>>>>> master
 
+  // filterData function accepts start date and end date, 
+  // then use them to return filtered and formatted data from year-end(single-client).json 
   filterData(start, end) {
-    const datas = singleData.data.data[0].data;
-    let grab = false;
-    let filteredData = [];
-
-    for (let i = 0; i < datas.length; i++) {
-      if (datas[i][0] === start) {
-        grab = true;
+    // get array of data from year-end(single-client).json
+    let datas = data.data[0].data;
+    // filter the data by determine if each moment of date is in (inclusively) between start and end date
+    let filteredData = datas.filter(
+      d => moment(d[0]).isBetween(moment(start), moment(end), undefined, [])
+    );
+    // format the data to suit format of VerticalBarSeries and LabelSeries components
+    return filteredData.map(d => {
+      // for each point, data property of both components need:
+      return {
+        // date  (d[0]) as x value, excluding year
+        x: d[0].slice(0, 6),
+        // number (d[1]) as y value
+        y: d[1],
+        // number as label's name. converted to stirng
+        label: d[1].toString(),
+        // label's style
+        style: { fontSize: '11px' }
       }
-      if (grab) {
-        filteredData.push({
-          // Data related keys
-          x: datas[i][0].slice(0, 6), y: datas[i][1],
-          // Label and style related keys
-          label: datas[i][1].toString(),
-          style: { fontSize: 12 }
-        })
-      }
-      if (datas[i][0] === end) {
-        break;
-      }
-    }
-    return filteredData;
+    });
   }
 
   render() {
-    const data = this.filterData(this.props.startDate, this.props.endDate)
+    // take startDate and endDate from props
+    // and used them to get filtered and formatted data from year-end(single-client).json
+    const datas = this.filterData(this.props.startDate, this.props.endDate)
 
     return (
       <XYPlot
@@ -48,13 +62,18 @@ export class SingleBarChart extends Component {
         xType="ordinal"
       >
         <XAxis />
+        {/* feed datas as props */}
         <VerticalBarSeries
           barWidth={0.6}
-          data={data}
+          data={datas}
           color='#4285f4'
         />
-        <LabelSeries data={data} />
-
+        {/* feed datas as props */}
+        <LabelSeries
+          data={datas}
+          labelAnchorX="middle"
+          labelAnchorY="text-before-edge"
+        />
       </XYPlot>
     )
   }
