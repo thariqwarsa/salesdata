@@ -76,13 +76,13 @@ export class RightPanel extends Component {
         },
         {
           name: 'Pending Order',
-          total: first - 1000,
-          perc: ((first - 1000) / 100).toFixed(1)
+          total: Math.abs(first - last),
+          perc: ((first - last) / 100).toFixed(1)
         },
         {
           name: 'Shipping',
-          total: `Rp. ${(last * 1000).toLocaleString(['ban', 'id'])}`,
-          perc: ((last - 1000) / 100).toFixed(1)
+          total: `Rp. ${(Math.abs(first - last) * 1000).toLocaleString(['ban', 'id'])}`,
+          perc: ((first - last - 100) / 100).toFixed(1)
         }
       ],
       // RADIAL DATA is feed to radial chart
@@ -137,9 +137,9 @@ export class RightPanel extends Component {
                     {index > 0 && (<hr></hr>)}
                     <div className="card-text sub-title">{d.name}</div>
                     <div className="card-title">{d.total}</div>
-                    {/* set font color to green if perc is positive. otherwise, red */}
-                    <div className={`card-text ${d.perc > 0 ? 'increment' : 'decrement'}`}>
-                      {d.perc > 0 && '+'}{d.perc}%
+                    {/* set font color to green if perc is positive. otherwise, red. */}
+                    <div className={`card-text ${d.perc > 0 ? 'increment' : d.perc < 0 ? 'decrement' : ''}`}>
+                      {d.perc > 0.0 && '+'}{d.perc}%
                     </div>
                   </div>
                 )
