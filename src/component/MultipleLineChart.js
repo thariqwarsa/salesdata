@@ -115,7 +115,7 @@ export class MultipleLineChart extends Component {
             crosshairValue &&
             <Crosshair values={[...crosshairData]} >
               <div
-                classname='crosshair'
+                className='crosshair'
                 style={{
                   backgroundColor: 'white',
                   width: '12em',
