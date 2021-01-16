@@ -4,7 +4,7 @@ import overviewData from '../data/sales-overview.json'
 export class SalesOverview extends Component {
   render() {
     const { order_cancel, order_paid, order_pending, today_sales,
-      total_cancel, total_pending, total_shipping } = overviewData.data
+      total_cancel, total_pending } = overviewData.data
 
     return (
       <div className='SalesOverview'>
