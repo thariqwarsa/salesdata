@@ -45,7 +45,7 @@ export class MultipleLineChart extends Component {
     let crosshairData = [];
     grab = false;
 
-    for (let i = 0; i < lineData[0].data.length - 1; i++) {
+    for (let i = 0; i < lineData[0].data.length; i++) {
       currentDate = {
         x: lineData[0].data[i].x,
         data: []
@@ -73,6 +73,8 @@ export class MultipleLineChart extends Component {
     const { lineData, crosshairData } = this.filterData(this.props.startDate, this.props.endDate);
     const account_names = lineData.map(d => d.account_name);
     const { crosshairValue, hoveredDate } = this.state;
+    console.log(crosshairData);
+    console.log(lineData);
 
     return (
       <div className="MultipleLineChart" >
@@ -122,7 +124,8 @@ export class MultipleLineChart extends Component {
                   border: '1px solid #808080',
                   padding: '1em',
                   color: '#707070'
-                }}>
+                }}
+              >
                 <div
                   style={{
                     fontWeight: '600',
