@@ -15,7 +15,7 @@ import { RadialChart, DiscreteColorLegend, Hint } from 'react-vis';
 export class RightPanel extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: null }
+    this.state = { hintValue: null }
     this.rememberValue = this.rememberValue.bind(this);
     this.forgetValue = this.forgetValue.bind(this);
   }
@@ -89,29 +89,32 @@ export class RightPanel extends Component {
       // color: color of each data
       // title: name of each data for labeling
       radialData: [
-        { title: 'Awareness', angle: max, value: max / (2 * max + first - min) * 100, innerRadius: 0.7, color: '#4285F4' },
-        { title: 'Traffics', angle: first, value: min / (2 * max + first - min) * 100, innerRadius: 0.7, color: '#f4b400' },
-        { title: 'Contention', angle: max - min, value: (max - min) / (2 * max + first - min) * 100, innerRadius: 0.7, color: '#db4437' }
+        { title: 'Awareness', angle: max, innerRadius: 0.7, color: '#4285F4' },
+        { title: 'Traffics', angle: first, innerRadius: 0.7, color: '#f4b400' },
+        { title: 'Contention', angle: max - min, innerRadius: 0.7, color: '#db4437' }
       ]
     }
   }
 
-  rememberValue(value) {
-    this.setState({ value: value })
+  rememberValue(hintValue) {
+    this.setState({ hintValue: hintValue })
   }
 
   forgetValue() {
-    this.setState({ value: null })
+    this.setState({ hintValue: null })
   }
 
   render() {
     // grab numData and radialData from analyzeData function
     // analyzeData function takes startDate and endDate as props from parent (App.js);
     const { numData, radialData } = this.analyzeData(this.props.startDate, this.props.endDate);
+    // grab hint value from state
+    const { hintValue } = this.state;
     // parse radialData for DiscreteColorLegend 
-    const labels = radialData.map(d => {
+    const legend = radialData.map(d => {
       return { title: d.title, color: d.color, strokeWidth: 4 }
     });
+
 
     return (
       <div className='RightPanel' >
@@ -150,11 +153,13 @@ export class RightPanel extends Component {
           onValueMouseOut={this.forgetValue}
         >
           {
-            this.state.value &&
+            hintValue &&
             (
-              <Hint value={this.state.value}>
-                <div style={{ color: this.state.value.color }}>
-                  {this.state.value.title}: {this.state.value.value.toFixed(1)}%
+              <Hint value={hintValue}>
+                <div style={{ color: hintValue.color }}>
+                  {hintValue.title}: {
+                    ((hintValue.angle0 - hintValue.angle) / Math.PI * 50).toFixed(1)
+                  }%
                 </div>
               </Hint>
             )
@@ -162,7 +167,7 @@ export class RightPanel extends Component {
         </RadialChart>
         <DiscreteColorLegend
           className='legend'
-          items={labels}
+          items={legend}
           orientation='vertical' width={160}
         />
 
