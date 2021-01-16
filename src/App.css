@@ -136,6 +136,11 @@
   fill: white;
 }
 
+.SingleBarChart .rv-xy-plot__axis__tick__text {
+  font-size: 9px;
+  font-weight: 600;
+}
+
 .MultipleLineChart {
   margin: 1em auto;
 }
@@ -149,12 +154,6 @@
   font-size: 9px;
   margin: 1em auto;
 }
-
-.SingleBarChart .rv-xy-plot__axis__tick__text {
-  font-size: 9px;
-  font-weight: 600;
-}
-
 .DateRangePicker {
   margin-top: 1em;
 }

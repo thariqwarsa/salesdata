@@ -12,8 +12,6 @@ export class MultipleLineChart extends Component {
   constructor(props) {
     super(props);
     this.state = { crosshairValue: null, hoveredDate: null }
-    this._onMouseLeave = this._onMouseLeave.bind(this);
-    this._onNearestX = this._onNearestX.bind(this);
   }
 
   filterData(start, end) {
@@ -71,14 +69,6 @@ export class MultipleLineChart extends Component {
     return { lineData, crosshairData };
   }
 
-  _onMouseLeave() {
-    this.setState({ crosshairValue: null });
-  }
-
-  _onNearestX(value) {
-    this.setState({ crosshairValue: value });
-  }
-
   render() {
     const { lineData, crosshairData } = this.filterData(this.props.startDate, this.props.endDate);
     const account_names = lineData.map(d => d.account_name);
@@ -91,6 +81,7 @@ export class MultipleLineChart extends Component {
           className='MultipleLineChart'
           width={600}
           height={200}
+          onMouseLeave={() => this.setState({ crosshairValue: null, hoveredDate: null })}
         >
           <XAxis
             tickFormat={(t, i) => {
@@ -99,7 +90,6 @@ export class MultipleLineChart extends Component {
               else return;
             }}
           />
-
           <YAxis />
           <HorizontalGridLines />
           {
@@ -109,17 +99,39 @@ export class MultipleLineChart extends Component {
                   key={d.account_name}
                   data={d.data}
                   curve={'curveMonotoneX'}
-                  onNearestX={(value, { index }) => this.setState({ crosshairValue: crosshairData[index], hoveredDate: value.x })}
-                  onMouseLeave={() => this.setState({ crosshairValue: null, hoveredDate: null })}
+                  onNearestX={
+                    (value, { index }) => this.setState({
+                      crosshairValue: crosshairData[index],
+                      hoveredDate: value.x
+                    })
+                  }
                 />
               )
             })
           }
           {
             crosshairValue &&
-            <Crosshair values={crosshairData}>
-              <div style={{ backgroundColor: 'white', border: '1px solid black', width: '12em' }}>
-                <div>{hoveredDate}</div>
+            <Crosshair values={[...crosshairData]} >
+              <div
+                classname='crosshair'
+                style={{
+                  backgroundColor: 'white',
+                  width: '12em',
+                  borderRadius: '2px',
+                  boxShadow: '2px 2px 3px #8d8d8d',
+                  border: '1px solid #808080',
+                  padding: '1em',
+                  color: '#707070'
+                }}>
+                <div
+                  style={{
+                    fontWeight: '600',
+                    fontSize: '1.2em',
+                    marginBottom: '0.4em'
+                  }}
+                >
+                  {hoveredDate}
+                </div>
                 {
                   crosshairValue.data.map(d => {
                     return (
