@@ -11,11 +11,7 @@ import { data } from '../data/year-end(single-client).json';
 
 // import react-vis
 import '../../node_modules/react-vis/dist/style.css';
-<<<<<<< HEAD
-import { RadialChart } from 'react-vis';
-=======
 import { RadialChart, DiscreteColorLegend, Hint } from 'react-vis';
->>>>>>> master
 
 export class RightPanel extends Component {
   constructor(props) {
@@ -40,11 +36,6 @@ export class RightPanel extends Component {
     // start collecting data if the date match startDate. 
     // break when reach endDate
     for (let i = 0; i < datas.length; i++) {
-<<<<<<< HEAD
-      if (datas[i][0] === start) grab = true;
-      if (grab) filteredData.push(datas[i][1])
-      if (datas[i][0] === end || i === datas.length - 1) break;
-=======
       if (datas[i][0] === start) {
         grab = true;
       }
@@ -52,7 +43,6 @@ export class RightPanel extends Component {
         filteredData.push(datas[i][1])
       }
       if (datas[i][0] === end) break;
->>>>>>> master
     }
 
     // find min, max, sum, average, first, and last element of filteredData array
