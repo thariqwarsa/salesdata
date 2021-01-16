@@ -40,14 +40,15 @@ export class MultipleLineChart extends Component {
     this.setState({ crosshairValues: [] });
   }
 
-  _onNearestX(value, { index }) {
-    this.setState({ crosshairValues: [] });
+  _onNearestX(value) {
+    this.setState({ crosshairValues: value });
   }
 
   render() {
     const datas = this.filterData(this.props.startDate, this.props.endDate);
     const account_names = datas.map(d => d.account_name);
     const { crosshairValue } = this.state;
+
     return (
       < div className="MultipleLineChart" >
         <XYPlot
@@ -79,13 +80,14 @@ export class MultipleLineChart extends Component {
               )
             })
           }
-          {/* // {crosshairValue &&
-          //   <Crosshair values={[crosshairValue]}>
-            //     <div style={{ backgroundColor: 'white', border: '1px solid black', width: '12em' }}>
-              //       <div>{crosshairValue.x}</div>
-          //     </div>
-          //   </Crosshair>
-          // } */}
+          {
+            crosshairValue &&
+            <Crosshair values={[crosshairValue]}>
+              <div style={{ backgroundColor: 'white', border: '1px solid black', width: '12em' }}>
+                <div>{crosshairValue.x}</div>
+              </div>
+            </Crosshair>
+          }
         </XYPlot>
         <div className='legend'>
           <DiscreteColorLegend

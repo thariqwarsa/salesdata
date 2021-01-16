@@ -34,7 +34,12 @@ export class App extends Component {
         <div className="App" >
           <div className='container'>
             <div className='row'>
-              <Date homeCallback={this.changeDate} />
+              <div className='col-6'>
+                <div className='main-title'>Dashboard</div>
+              </div>
+              <div className='col-6'>
+                <Date homeCallback={this.changeDate} />
+              </div>
             </div>
 
             <div className="row">
@@ -42,7 +47,6 @@ export class App extends Component {
                 <RoutePanel />
               </div>
               <div className="col-8">
-
                 <Switch>
                   <Route exact path='/' component={() => (
                     <Fragment>
@@ -55,7 +59,6 @@ export class App extends Component {
                   <Route exact path='/linechart' component={() => <MultipleLineChart startDate={startDate} endDate={endDate} />} />
                   <Route exact path='/barchart' component={() => <SingleBarChart startDate={startDate} endDate={endDate} />} />
                 </Switch>
-
               </div>
               <div className='col-2'>
                 <RightPanel startDate={startDate} endDate={endDate} />

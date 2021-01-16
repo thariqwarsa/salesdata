@@ -2,8 +2,15 @@
   max-width: 64em;
 }
 
+.App .main-title {
+  margin-left: 18%;
+  margin-top: 0.8em;
+  font-size: 1.3em;
+  color: #838383;
+}
+
 .Date {
-  margin-left: 70%;
+  float: right;
 }
 
 .RightPanel {
