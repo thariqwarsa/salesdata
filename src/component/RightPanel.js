@@ -2,6 +2,7 @@
 // this component take start date and end date, and also data from year-end(single-client).json
 // then, the data will be processed and visualized as number, percentage, and radial chart
 // the data processing is completely unrelated to any goals. just to show the result will change based on dates
+// the radial chart will show data's value (Hint) if hovered.
 
 import React, { Component } from 'react';
 
@@ -15,6 +16,7 @@ import { RadialChart, DiscreteColorLegend, Hint } from 'react-vis';
 export class RightPanel extends Component {
   constructor(props) {
     super(props);
+    // initialize state and method for Hint component
     this.state = { hintValue: null }
     this.rememberValue = this.rememberValue.bind(this);
     this.forgetValue = this.forgetValue.bind(this);
@@ -84,10 +86,10 @@ export class RightPanel extends Component {
         }
       ],
       // RADIAL DATA is feed to radial chart
-      // angle: a num to be converted as portion of radial degree by RadialChart component
+      // angle: a num to be converted as radiant (angle and angle0 props) by RadialChart component
       // innerRadius: to create donut shape
       // color: color of each data
-      // title: name of each data for labeling
+      // title: name of each data for legend and Hint
       radialData: [
         { title: 'Awareness', angle: max, innerRadius: 0.7, color: '#4285F4' },
         { title: 'Traffics', angle: first, innerRadius: 0.7, color: '#f4b400' },
@@ -96,10 +98,14 @@ export class RightPanel extends Component {
     }
   }
 
+  // if portion of radial chart is hovered, 
+  // set hintValue state to corresponding radialData value
   rememberValue(hintValue) {
     this.setState({ hintValue: hintValue })
   }
 
+  // if portion of radial chart is hovered, 
+  // set hintValue to null
   forgetValue() {
     this.setState({ hintValue: null })
   }
@@ -108,7 +114,7 @@ export class RightPanel extends Component {
     // grab numData and radialData from analyzeData function
     // analyzeData function takes startDate and endDate as props from parent (App.js);
     const { numData, radialData } = this.analyzeData(this.props.startDate, this.props.endDate);
-    // grab hint value from state
+    // grab hintValue from state
     const { hintValue } = this.state;
     // parse radialData for DiscreteColorLegend 
     const legend = radialData.map(d => {
@@ -141,6 +147,7 @@ export class RightPanel extends Component {
             }
           </div>
         </div>
+
         <div className='chart-title'>Budget Chart</div>
 
         <RadialChart
@@ -149,14 +156,17 @@ export class RightPanel extends Component {
           height={160}
           data={radialData}
           colorType='literal'
+          // handle Hint behaviour if mouse pointer hovered on radial chart
           onValueMouseOver={this.rememberValue}
           onValueMouseOut={this.forgetValue}
         >
+          {/* show Hint if hintValue is not null */}
           {
             hintValue &&
             (
               <Hint value={hintValue}>
                 <div style={{ color: hintValue.color }}>
+                  {/* convert data's radiant to percentage */}
                   {hintValue.title}: {
                     ((hintValue.angle0 - hintValue.angle) / Math.PI * 50).toFixed(1)
                   }%
@@ -165,6 +175,7 @@ export class RightPanel extends Component {
             )
           }
         </RadialChart>
+
         <DiscreteColorLegend
           className='legend'
           items={legend}
