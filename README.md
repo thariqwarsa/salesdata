@@ -5,14 +5,14 @@ This project use [React JS](https://reactjs.org/) styled with [Bootstrap 4](http
 [react-dates](https://github.com/airbnb/react-dates) is used for pick date range.
 The datas is visualize using [react-vis](https://uber.github.io/react-vis/) library.
 
-## INSTALLATION
+## Installation
 
 1. clone this repository with `git clone https://github.com/thariqwarsa/salesdata.git ` on your local terminal
 2. install dependencies with `npm install`
 3. on cloned project's root directory, start server with `npm start`
 4. Starting server will take a while. The app will launched automatically on your default browser.
 
-## FOLDER STRUCTURE
+## Folder Structure
 
 ```
 .
@@ -68,7 +68,7 @@ import data from `sales-overview.json` and display it, as it is.
 
 more detailed explanations are provided on each components file as comments
 
-## DATA FLOWS
+## Data Flows
 
 The data flow of SVD is as follow:
 
@@ -88,7 +88,7 @@ Then, using startDate and endDate from props, each component will parse the data
 
 Detailed explanation is provided on each components as comments.
 
-## BUGS AND FLAWS
+## Bug and Flaw
 
 1. The last date (01 October 2020) can't be selected on Date Range Picker
 2. The date range should manually selected
