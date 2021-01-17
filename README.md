@@ -1,14 +1,14 @@
 # SALES DATA VISUALIZATION DASHBOARD
 
 Sales Data Visualization (SVD) is a web app to visualize data dynamically based on selected date range.
-This project use [React JS](https://reactjs.org/) styled with [Bootstrap 4](https://getbootstrap.com/) for creating responsive page.
+This project use [React JS](https://reactjs.org/) styled with [Bootstrap 4](https://getbootstrap.com/).
 [react-dates](https://github.com/airbnb/react-dates) is used for pick date range.
 The datas is visualize using [react-vis](https://uber.github.io/react-vis/) library.
 
 ## INSTALLATION
 
-1. clone this repository with `git clone https://github.com/thariqwarsa/salesdata.git `
-2. on your local terminal, install dependencies with `npm install`
+1. clone this repository with `git clone https://github.com/thariqwarsa/salesdata.git ` on yout local terminal
+2. install dependencies with `npm install`
 3. on cloned project root directory, start server with `npm start`
 4. Starting server will take a while. The app will launched automatically on your default browser.
 
@@ -37,6 +37,36 @@ The datas is visualize using [react-vis](https://uber.github.io/react-vis/) libr
     └── index.js
 
 ```
+
+### App.js
+
+stores all components, handle routing, and pass date range (startDate and endDate) from Date to other components.
+
+### Route.js
+
+UI for selecting route
+
+### Date.js
+
+take date range (startDate and endDate) input from user and pass them to App.js as props.
+
+### MultipleLineChart.js
+
+receive (startDate and endDate) from `App.js`, use them to parse data from `year-end.json`, and visualized it as multiple linechart
+
+### SingleBarChart.js
+
+receive (startDate and endDate) from `App.js`, use them to parse data from `year-end(single-client).json`,and visualized it as single barchart
+
+### RightPanel.js
+
+receive (startDate and endDate) from `App.js`, use them to parse data from `year-end(single-client).json`,and visualized it as piechart and simple plain text
+
+### SalesOverview.js
+
+import data from sales-overview.json and display it, as it is.
+
+more detailed explanations are provided on each components file as comments
 
 ## DATA FLOWS
 
