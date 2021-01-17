@@ -1,6 +1,6 @@
 // ============ SALES OVERVIEW COMPONENT ============  //
 // this component take datas from sales-overview.json and display it.
-// the datas is not processed and not dynamic.
+// the datas is not processed and not dynamic
 
 import React, { Component } from 'react';
 // import data from sales-overview,json
