@@ -1,6 +1,6 @@
 // ============ SALES OVERVIEW COMPONENT ============  //
 // this component take datas from sales-overview.json and display it.
-// the datas is not processed and not dynamic
+// the datas is not processed and not dynamic.
 
 import React, { Component } from 'react';
 // import data from sales-overview,json
@@ -8,6 +8,7 @@ import { data } from '../data/sales-overview.json'
 
 export class SalesOverview extends Component {
   render() {
+    // grab each props of data
     const {
       order_cancel,
       order_paid,
@@ -51,7 +52,6 @@ export class SalesOverview extends Component {
 
           </div>
         </div>
-
       </div>
     )
   }
