@@ -2,15 +2,15 @@
 
 Sales Data Visualization (SVD) is a web app to visualize data dynamically based on selected date range.
 This project use [React JS](https://reactjs.org/) styled with [Bootstrap 4](https://getbootstrap.com/).
-[react-dates](https://github.com/airbnb/react-dates) is used for pick date range.
+DateRangePicker from [react-dates](https://github.com/airbnb/react-dates) is used for pick date range.
 The datas is visualize using [react-vis](https://uber.github.io/react-vis/) library.
 
 ## Installation
 
 1. clone this repository with `git clone https://github.com/thariqwarsa/salesdata.git ` on your local terminal
-2. install dependencies with `npm install`
+2. on cloned project's root directory, install dependencies with `npm install`
 3. on cloned project's root directory, start server with `npm start`
-4. Starting server will take a while. The app will launched automatically on your default browser.
+4. Starting server will take a while. The app will launched automatically on your default browser (http://localhost:3000/)
 
 ## Folder Structure
 
@@ -40,7 +40,7 @@ The datas is visualize using [react-vis](https://uber.github.io/react-vis/) libr
 
 ### `App.js`
 
-stores all components, handle routing, and pass date range (startDate and endDate) from Date to other components.
+stores all components, handle routing, and pass date range (startDate and endDate) from Date component to other components.
 
 ### `RoutePanel.js`
 
@@ -70,7 +70,7 @@ more detailed explanations are provided on each components file as comments
 
 ## Data Flows
 
-The data flow of SVD is as follow:
+The data flow of this project is as follow:
 
 ```
        startDate,          startDate,
@@ -81,8 +81,7 @@ Date ------------> App
                     └──---------------> RightPanel
 ```
 
-in general, this app take date range as user input from Date.js.
-The date range (startDate and endDate) will be passed to its parent (App.js) as props. Then, those props will passed again to SingleBarchart, MultipleLineChart, and RightPanel component.
+This app take date range as user input from Date.js. The date range (startDate and endDate) will be passed to its parent (App.js) as props. Then, those props will passed again to SingleBarchart, MultipleLineChart, and RightPanel component.
 each component will fetch data from respective json at `/data` directory.
 Then, using startDate and endDate from props, each component will parse the data and display it as chart or number.
 
