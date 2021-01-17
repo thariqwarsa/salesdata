@@ -1,7 +1,7 @@
 // ============ ROUTEPANEL COMPONENT ============  //
 // RoutePanel.js handle UI to select which chart (component) to be shown on dashboard
 
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 // import NavLink component
 import { NavLink } from 'react-router-dom';
 
