@@ -73,8 +73,6 @@ export class MultipleLineChart extends Component {
     const { lineData, crosshairData } = this.filterData(this.props.startDate, this.props.endDate);
     const account_names = lineData.map(d => d.account_name);
     const { crosshairValue, hoveredDate } = this.state;
-    console.log(crosshairData);
-    console.log(lineData);
 
     return (
       <div className="MultipleLineChart" >
@@ -113,7 +111,7 @@ export class MultipleLineChart extends Component {
           }
           {
             crosshairValue &&
-            <Crosshair values={[...crosshairData]} >
+            <Crosshair values={crosshairData} >
               <div
                 className='crosshair'
                 style={{

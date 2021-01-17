@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import './App.css';
+import './styles/App.css';
 
 import Date from './component/Date.js'
 import SingleBarChart from './component/SingleBarChart.js';
