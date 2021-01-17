@@ -16,6 +16,10 @@ import { XYPlot, VerticalBarSeries, XAxis, LabelSeries } from 'react-vis';
 import * as moment from 'moment';
 
 export class SingleBarChart extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [] }
+  }
 
   // filterData function accepts start date and end date, 
   // then use them to return filtered and formatted data from year-end(single-client).json 
