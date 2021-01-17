@@ -1,5 +1,5 @@
 // ======= SINGLE BAR CHART ===========
-// this component takes startDate and endDate from parent (App.js) as props
+// this component takes startDate and endDate props from parent (App.js)
 // then, it used them to filter and format data from year-end(single-client).json
 // finally, it visualize the data as labelled barchart
 
