@@ -1,7 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import './styles/App.css';
+// ============ APP COMPONENT ============  //
+// App.js is parent of all components in this project.
+// this component handle routing and also pass startdate and endDate 
+// from Date component to other components as props.
 
+// import React
+import React, { Component, Fragment } from 'react';
+// import routing component
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+// import style. it includes styles for all child component
+import './styles/App.css';
+// import all components
 import Date from './component/Date.js'
 import SingleBarChart from './component/SingleBarChart.js';
 import MultipleLineChart from './component/MultipleLineChart';
@@ -19,15 +27,14 @@ export class App extends Component {
     this.changeDate = this.changeDate.bind(this);
   }
 
+  // pass startDate and endDate to states
   changeDate(start, end) {
     this.setState({ startDate: start, endDate: end });
   }
 
   render() {
+    // grab startDate and endDate state
     const { startDate, endDate } = this.state;
-    // const startDate = '09 Sep 2020';
-    // const endDate = '17 Sep 2020';
-    // const page = this.state.page;
 
     return (
       <BrowserRouter>
@@ -43,11 +50,13 @@ export class App extends Component {
                     <div className='main-title'>Dashboard</div>
                   </div>
                   <div className='col-6'>
+                    {/* take startDate and endDate from Date component */}
                     <Date homeCallback={this.changeDate} />
                   </div>
                 </div>
                 <div className='row'>
                   <div className='col-9'>
+                    {/* Routing and passed startDate and endDate states to each components as props */}
                     <Switch>
                       <Route exact path='/' component={() => (
                         <Fragment>
