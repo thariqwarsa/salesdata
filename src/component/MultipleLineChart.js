@@ -1,7 +1,7 @@
 // ============== MULTIPLE LINE CHART ============== 
-// this component treceive (startDate and endDate) from App.js, 
+// this component receive startDate and endDate props from App.js, 
 // use them to parse data from year-end.json, and visualized it as dynamic multiple linechart
-// this compont has a bug. the crosshair is not moving to corresponding x axis. the contain is still changed
+// this componet has a bug. the crosshair is not moving to corresponding x axis. the contents is still dynamic
 
 import React, { Component } from 'react';
 // import data from year-end.json
@@ -25,12 +25,12 @@ export class MultipleLineChart extends Component {
     this.state = { crosshairValue: null, hoveredDate: null }
   }
 
-  // recieve startDate and endDate as arguments for parsing data from year-end.json
+  // filterData function recieve startDate and endDate as arguments for parsing data from year-end.json
   // return parsed data for Linechart and Crosshair component.
   // retuned data has following structure:
 
   // lineData =  [
-  //   { clientName, data: [{ x: date, x: y }, { date, y }... ] }, 
+  //   { clientName, data: [{ x: date, x: y }, { date, y }, ... ] }, 
   //   ...
   // ]
 
@@ -133,7 +133,7 @@ export class MultipleLineChart extends Component {
           onMouseLeave={() => this.setState({ crosshairValue: null, hoveredDate: null })}
         >
           <XAxis
-            // manage too many label on x axios by limit it if the data have length more than 18
+            // manage too many label on x axis by limit it if the data have length more than 18
             tickFormat={(t, i) => {
               if (lineData[0].data.length < 18) return t.split(',')[0];
               if ((i + 1) % 5 === 0) return t.split(',')[0];
@@ -163,8 +163,8 @@ export class MultipleLineChart extends Component {
             })
           }
           {
-            // if the crosshairValue state is not null, show crosshair 
-            // and y value of each account name on hovered x axis
+            // if the crosshairValue state is not null, 
+            // show crosshair and y value of each account name on hovered x axis
             crosshairValue &&
             <Crosshair values={crosshairData} >
               <div

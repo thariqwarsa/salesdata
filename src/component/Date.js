@@ -1,6 +1,7 @@
 // ============ DATE COMPONENT ============  //
 // this component is used for pick date range as startDate and endDate. 
 // then, send them to parent (App.js)
+// this component has a bug. first date (01 October 2020) can't be selected
 
 import React, { Component } from 'react';
 
@@ -65,7 +66,7 @@ export class Date extends Component {
 
   render() {
     // grab minDate and maxDate from state
-    const { minDate, maxDate } = this.state;
+    const { minDate, maxDate, startDate, endDate } = this.state;
 
     return (
       <div className='Date'>
@@ -78,9 +79,9 @@ export class Date extends Component {
                 in this case, it checks wether a day is after or equal to minDate AND before or equal to maxDate.
         */}
         <DateRangePicker
-          startDate={this.state.startDate}
+          startDate={startDate}
           startDateId="your_unique_start_date_id"
-          endDate={this.state.endDate}
+          endDate={endDate}
           endDateId="your_unique_end_date_id"
           onDatesChange={({ startDate, endDate }) => this.handleChangeDate(startDate, endDate)}
           focusedInput={this.state.focusedInput}
