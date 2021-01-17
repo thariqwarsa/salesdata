@@ -3,7 +3,7 @@
 Sales Data Visualization (SVD) is a web app to visualize data dynamically based on selected date range.
 This project use [React JS](https://reactjs.org/) styled with [Bootstrap 4](https://getbootstrap.com/) for creating responsive page.
 [react-dates](https://github.com/airbnb/react-dates) is used for pick date range.
-The datas is visualize using (react-vis)[https://uber.github.io/react-vis/] library.
+The datas is visualize using [react-vis](https://uber.github.io/react-vis/) library.
 
 ## INSTALLATION
 
