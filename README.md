@@ -48,7 +48,7 @@ UI for selecting route
 
 ### `Date.js`
 
-take date range (startDate and endDate) input from user and pass them to App.js as props.
+take date range (startDate and endDate) input from user and pass them to `App.js` as props.
 
 ### `MultipleLineChart.js`
 
@@ -64,7 +64,7 @@ receive (startDate and endDate) from `App.js`, use them to parse data from `year
 
 ### `SalesOverview.js`
 
-import data from sales-overview.json and display it, as it is.
+import data from `sales-overview.json` and display it, as it is.
 
 more detailed explanations are provided on each components file as comments
 
