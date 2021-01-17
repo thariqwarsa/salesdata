@@ -38,31 +38,31 @@ The datas is visualize using [react-vis](https://uber.github.io/react-vis/) libr
 
 ```
 
-### App.js
+### `App.js`
 
 stores all components, handle routing, and pass date range (startDate and endDate) from Date to other components.
 
-### Route.js
+### `RoutePanel.js`
 
 UI for selecting route
 
-### Date.js
+### `Date.js`
 
 take date range (startDate and endDate) input from user and pass them to App.js as props.
 
-### MultipleLineChart.js
+### `MultipleLineChart.js`
 
 receive (startDate and endDate) from `App.js`, use them to parse data from `year-end.json`, and visualized it as multiple linechart
 
-### SingleBarChart.js
+### `SingleBarChart.js`
 
 receive (startDate and endDate) from `App.js`, use them to parse data from `year-end(single-client).json`,and visualized it as single barchart
 
-### RightPanel.js
+### `RightPanel.js`
 
 receive (startDate and endDate) from `App.js`, use them to parse data from `year-end(single-client).json`,and visualized it as piechart and simple plain text
 
-### SalesOverview.js
+### `SalesOverview.js`
 
 import data from sales-overview.json and display it, as it is.
 
