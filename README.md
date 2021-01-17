@@ -90,7 +90,7 @@ Detailed explanation is provided on each components as comments.
 
 ## BUGS AND FLAWS
 
-    1. The last date (01 October 2020) can't be selected on Date Range Picker
-    2. The date range should manually selected
-    3. crosshair of linechart not moving to hovered x axis
-    4. logic of MultipleLineChart component is not effective and efficient.
+1. The last date (01 October 2020) can't be selected on Date Range Picker
+2. The date range should manually selected
+3. crosshair of linechart not moving to hovered x axis
+4. logic of MultipleLineChart component is not effective and efficient.
