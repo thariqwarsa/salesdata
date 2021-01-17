@@ -94,3 +94,4 @@ Detailed explanation is provided on each components as comments.
 2. The date range should manually selected
 3. crosshair of linechart not moving to hovered x axis
 4. logic of MultipleLineChart component is not effective and efficient.
+5. Too much data will cause cramp on x axis label and y label on SingleBarchart component
