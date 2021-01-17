@@ -9,7 +9,7 @@ The datas is visualize using [react-vis](https://uber.github.io/react-vis/) libr
 
 1. clone this repository with `git clone https://github.com/thariqwarsa/salesdata.git ` on your local terminal
 2. install dependencies with `npm install`
-3. on cloned project root directory, start server with `npm start`
+3. on cloned project's root directory, start server with `npm start`
 4. Starting server will take a while. The app will launched automatically on your default browser.
 
 ## FOLDER STRUCTURE
@@ -52,15 +52,15 @@ take date range (startDate and endDate) input from user and pass them to `App.js
 
 ### `MultipleLineChart.js`
 
-receive (startDate and endDate) from `App.js`, use them to parse data from `year-end.json`, and visualized it as multiple linechart
+receive date range (startDate and endDate) from `App.js`, use them to parse data from `year-end.json`, and visualized it as multiple linechart
 
 ### `SingleBarChart.js`
 
-receive (startDate and endDate) from `App.js`, use them to parse data from `year-end(single-client).json`,and visualized it as single barchart
+receive date range (startDate and endDate) from `App.js`, use them to parse data from `year-end(single-client).json`,and visualized it as single barchart
 
 ### `RightPanel.js`
 
-receive (startDate and endDate) from `App.js`, use them to parse data from `year-end(single-client).json`,and visualized it as piechart and simple plain text
+receive date range (startDate and endDate) from `App.js`, use them to parse data from `year-end(single-client).json`,and visualized it as piechart and simple plain text
 
 ### `SalesOverview.js`
 
