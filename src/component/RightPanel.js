@@ -1,7 +1,7 @@
 // ============== RIGHT PANEL ============== 
-// this component take start date and end date, and also data from year-end(single-client).json
+// this component take startDate and endDate as props, and also data from year-end(single-client).json
 // then, the data will be processed and visualized as number, percentage, and radial chart
-// the data processing is completely unrelated to any goals. just to show the result will change based on dates
+// the data processing is completely unrelated to any goals. just to show the result will change based on date range
 // the radial chart will show data's value (Hint) if hovered.
 
 import React, { Component } from 'react';
@@ -22,7 +22,7 @@ export class RightPanel extends Component {
     this.forgetValue = this.forgetValue.bind(this);
   }
 
-  // analyzeData function take start and end date as argument 
+  // analyzeData function take start and end date as argument,
   // and create processed data to feed to top section(s) of right panel
   analyzeData(start, end) {
     // grab datas from json
