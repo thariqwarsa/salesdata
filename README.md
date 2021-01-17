@@ -8,7 +8,7 @@ The datas is visualize using [react-vis](https://uber.github.io/react-vis/) libr
 ## Installation
 
 1. clone this repository with `git clone https://github.com/thariqwarsa/salesdata.git ` on your local terminal
-2. install dependencies with `npm install`
+2. on cloned project's root directory, install dependencies with `npm install`
 3. on cloned project's root directory, start server with `npm start`
 4. Starting server will take a while. The app will launched automatically on your default browser.
 
